@@ -1,0 +1,112 @@
+.navbar {
+    position: fixed;
+}
+
+.logo {
+    width: 280px;
+}
+
+nav li a {
+    font-size: 18px;
+    font-weight: 500;
+    font-family: 'Jost', sans-serif;
+    display: inline-block;
+    text-decoration: none;
+    color: #484F56;
+    margin-right: 30px;
+    position: relative;
+    transition: .4s;
+}
+
+nav li a:hover {
+    color: #FD8311;
+}
+
+.header-btn {
+    margin-left: 60px;
+}
+
+.active::after {
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    height: 3px;
+    width: 100%;
+    background-color: #FD8311;
+    content: '';
+}
+
+/* responsive start */
+
+@media (max-width: 575px) {
+    .logo {
+        width: 200px;
+    }
+
+    .navbar-nav {
+        padding-top: 30px;
+        text-align: center;
+    }
+
+    nav li a {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .header-btn {
+        display: block;
+        width: 120px;
+        margin: 0 auto;
+        text-align: center;
+    }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+    .logo {
+        width: 200px;
+    }
+
+    .navbar-nav {
+        padding-top: 30px;
+        text-align: center;
+    }
+
+    nav li a {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .header-btn {
+        display: block;
+        width: 120px;
+        margin: 0 auto;
+        text-align: center;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .logo {
+        width: 200px;
+    }
+
+    .navbar-nav {
+        padding-top: 30px;
+        text-align: center;
+    }
+
+    nav li a {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .header-btn {
+        display: block;
+        width: 120px;
+        margin: 0 auto;
+        text-align: center;
+    }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {}
+
+/* responsive end */

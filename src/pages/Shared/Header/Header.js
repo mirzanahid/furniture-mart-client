@@ -1,41 +1,32 @@
 import React from 'react';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 import { Link, NavLink } from 'react-router-dom';
+import './Header.css'
 
 const Header = () => {
 
-    const navItem = <>
-        <li><NavLink className={'active:bg-secondary active:text-white text-secondary'} to={'/'}>Home</NavLink></li>
-        <li><NavLink className={'text-secondary'} to={'/blog'}>Blog</NavLink></li>
-        <li><NavLink className={'text-secondary'} to={'/dashboard'}>Dashboard</NavLink></li>
-        <li><NavLink className={'text-secondary'} to={'/login'}>Login</NavLink></li>
-        <li><NavLink className={'text-secondary'} to={'/signup'}>Signup</NavLink></li>
 
-    </>
 
     return (
-        <div className="navbar bg-base-100">
-            <div className="navbar-start">
-                <div className="dropdown">
-                    <label tabIndex={0} className="btn btn-ghost lg:hidden">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
-                    </label>
-                    <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                        {
-                            navItem
-                        }
-                    </ul>
-                </div>
-                <Link className="btn btn-ghost normal-case text-xl">daisyUI</Link>
-            </div>
-            <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal p-0">
-                    {navItem}
-                </ul>
-            </div>
-            <div className="navbar-end">
-                <Link className="btn">Get started</Link>
-            </div>
-        </div>
+        <Navbar expand="lg" className='navbar'>
+            <Container>
+                <Navbar.Brand href="#home"><img src="logo.svg" alt="logo" className='logo' /></Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav d-flex align-items-center">
+                    <Nav className="m-auto ">
+                        <li><NavLink to={'/'}>Home</NavLink></li>
+                        <li><NavLink to={'/blog'}>Blog</NavLink></li>
+                        <li><NavLink to={'/dashboard'}>Dashboard</NavLink></li>
+                        <li><NavLink to={'/login'}>Login</NavLink></li>
+                        <li><NavLink to={'/signup'}>Signup</NavLink></li>
+                      
+                    </Nav>
+                    <Link className="regular-btn header-btn lg:ms-auto">Login</Link>
+                </Navbar.Collapse>
+            </Container>
+        </Navbar>
     );
 };
 
