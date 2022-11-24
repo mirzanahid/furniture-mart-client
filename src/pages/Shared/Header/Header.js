@@ -12,18 +12,16 @@ const Header = () => {
     return (
         <Navbar expand="lg" className='navbar'>
             <Container>
-                <Navbar.Brand href="#home"><img src="logo.svg" alt="logo" className='logo' /></Navbar.Brand>
+                <Navbar.Brand><NavLink to={'/'}><img src="logo.svg" alt="logo" className='logo' /></NavLink></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav d-flex align-items-center">
                     <Nav className="m-auto ">
                         <li><NavLink to={'/'}>Home</NavLink></li>
                         <li><NavLink to={'/blog'}>Blog</NavLink></li>
                         <li><NavLink to={'/dashboard'}>Dashboard</NavLink></li>
-                        <li><NavLink to={'/login'}>Login</NavLink></li>
-                        <li><NavLink to={'/signup'}>Signup</NavLink></li>
-                      
                     </Nav>
-                    <Link className="regular-btn header-btn lg:ms-auto">Login</Link>
+                    <Link to={"/login"} className="regular-btn header-btn lg:ms-auto">Login</Link>
+                    <Link to={'/signup'} className="regular-btn header-btn lg:ms-auto">Signup</Link>
                 </Navbar.Collapse>
             </Container>
         </Navbar>

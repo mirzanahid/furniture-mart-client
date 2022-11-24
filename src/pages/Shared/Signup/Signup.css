@@ -1,0 +1,132 @@
+
+
+
+.signup-heading {
+    margin-bottom: 40px;
+    text-align: center;
+    font-family: 'Jost', sans-serif;
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 32px;
+    color: #313D4D;
+
+}
+
+.signup-login-form {
+    background: #fff;
+    padding: 35px 35px;
+    width: auto;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.signup-login-form label {
+    font-family: 'Jost', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    color: #313D4D;
+}
+
+.signup-login-form input {
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 30px;
+    color: #313D4D;
+    height: 50px;
+    border-radius: 0;
+}
+
+.signup-login-form select {
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 30px;
+    color: #313D4D;
+    height: 50px;
+    border-radius: 0;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 10px 0 !important;
+    font-family: Roboto !important;
+    font-size: 18px !important;
+    font-weight: 500 !important;
+    line-height: 30px !important;
+    color: #fff !important;
+    background: #FD8311 !important;
+    border: 1px solid #FD8311 !important;
+    border-radius: 0 !important;
+    transition: .4s;
+
+}
+
+.submit-btn:Hover{
+    background: #313D4D !important;
+    border: 1px solid #313D4D !important;
+    color: #fff !important;
+}
+
+.or {
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 15px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.google-icon {
+    width: 30px;
+}
+
+.social-signup {
+    width: 100%;
+    padding: 12px;
+    font-family: 'Jost', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 20px;
+    color: #313D4D;
+    background: #fff;
+    border: 2px solid #f1f1f1;
+    display: block;
+    margin-bottom: 20px;
+    border-radius: 0;
+}
+
+.error-text {
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 20px;
+    color: red;
+    margin-top: 5px;
+}
+
+.signUp-foot {
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 14px;
+    color: #313D4D;
+}
+
+
+@media only screen and (max-width: 575.98px) {
+    .signup-login-form {
+        padding: 35px 20px;
+
+    }
+
+    .social-signup {
+        font-size: 16px;
+
+    }
+
+    .signup-login-form .check-input label {
+        font-size: 12px;
+        line-height: 20px;
+    }
+}
