@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { Col, Container, Row } from 'react-bootstrap';
 import googleicon from '../../../assets/google.png';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
+import toast from 'react-hot-toast';
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -17,6 +18,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user)
+                toast.success('Login successful.')
             })
             .catch(error => {
                 console.error(error.message);
@@ -46,7 +48,7 @@ const Login = () => {
                                 {errors.password && <p className='error-text' role="alert">{errors.password?.message}</p>}
                                 <p className='error-text' role="alert">{loginError}</p>
 
-                                <input className='submit-btn' value="Sign UP" type="submit" />
+                                <input className='submit-btn' value="Log In" type="submit" />
                                 <p className='signUp-foot mt-3'>New to Furniture Mart?? <Link className='form-footer-link' to={'/signup'}>Sign Up</Link></p>
                                 <p className='or'>Or</p>
 

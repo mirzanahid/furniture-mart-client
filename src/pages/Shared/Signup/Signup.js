@@ -6,18 +6,19 @@ import { Col, Container, Row } from 'react-bootstrap';
 import googleicon from '../../../assets/google.png';
 import './Signup.css'
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
+import toast from 'react-hot-toast';
 
 const Signup = () => {
     const { createUser, updateUser } = useContext(AuthContext)
     const { register, formState: { errors }, watch, handleSubmit } = useForm();
-
+    const [signUpError,setSignUpError] = useState('')
     const handleSignIn = data => {
-        console.log(data)
-
+        setSignUpError('')
         createUser(data.email, data.password)
             .then(result => {
                 const user = result.user;
                 console.log(user)
+                toast.success('sign up successful.')
                 const userInfo = {
                     displayName: data.name
                 }
@@ -25,7 +26,13 @@ const Signup = () => {
                     .then(() => { })
                     .catch(error => console.log(error))
             })
-            .catch(error => console.error(error))
+            .catch(error =>{
+                 console.error(error)
+                 if(error.message){
+                    setSignUpError('This email already in used please try another. ')
+                 }
+                  
+                })
     }
     return (
         <div className='furnitureMart-form'>
@@ -71,6 +78,7 @@ const Signup = () => {
 
                                     }
                                 </Form.Group>
+                                <p className='error-text' role="alert">{signUpError}</p>
                                 <input className='submit-btn' value="Sign UP" type="submit" />
                                 <p className='signUp-foot mt-3'>Already have an account? <Link className='form-footer-link' to={'/login'}>Log in</Link></p>
                                 <p className='or'>Or</p>
