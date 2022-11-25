@@ -1,13 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link, NavLink } from 'react-router-dom';
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import './Header.css'
 
 const Header = () => {
+    const { user, logout } = useContext(AuthContext)
 
+       const handleForLogout=()=>{
+        logout()
+        .then(()=>{
 
+        })
+        .catch(error=>{})
+       }
 
     return (
         <Navbar expand="lg" className='navbar'>
@@ -20,8 +28,15 @@ const Header = () => {
                         <li><NavLink to={'/blog'}>Blog</NavLink></li>
                         <li><NavLink to={'/dashboard'}>Dashboard</NavLink></li>
                     </Nav>
-                    <Link to={"/login"} className="regular-btn header-btn lg:ms-auto">Login</Link>
-                    <Link to={'/signup'} className="regular-btn header-btn lg:ms-auto">Signup</Link>
+                    {
+                        user?.uid ?
+                            <Link to={"/login"} onClick={handleForLogout} className="regular-btn header-btn lg:ms-auto">Logout</Link>
+                            :
+                            <Link to={"/login"} className="regular-btn header-btn lg:ms-auto">Login</Link>
+                    }
+
+
+
                 </Navbar.Collapse>
             </Container>
         </Navbar>
