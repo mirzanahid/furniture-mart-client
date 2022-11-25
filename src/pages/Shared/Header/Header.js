@@ -9,13 +9,13 @@ import './Header.css'
 const Header = () => {
     const { user, logout } = useContext(AuthContext)
 
-       const handleForLogout=()=>{
+    const handleForLogout = () => {
         logout()
-        .then(()=>{
+            .then(() => {
 
-        })
-        .catch(error=>{})
-       }
+            })
+            .catch(error => { })
+    }
 
     return (
         <Navbar expand="lg" className='navbar'>
@@ -26,7 +26,12 @@ const Header = () => {
                     <Nav className="m-auto ">
                         <li><NavLink to={'/'}>Home</NavLink></li>
                         <li><NavLink to={'/blog'}>Blog</NavLink></li>
-                        <li><NavLink to={'/dashboard'}>Dashboard</NavLink></li>
+                        {
+                            user?.uid ?
+                                <li><NavLink to={'/dashboard'}>Dashboard</NavLink></li>
+                                :
+                                null
+                        }
                     </Nav>
                     {
                         user?.uid ?

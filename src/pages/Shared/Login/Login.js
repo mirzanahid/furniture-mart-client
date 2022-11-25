@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Form from 'react-bootstrap/Form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Col, Container, Row } from 'react-bootstrap';
 import googleicon from '../../../assets/google.png';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
@@ -11,6 +11,12 @@ const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { login } = useContext(AuthContext);
     const [loginError, setLoginError] = useState('')
+    const navigate = useNavigate()
+
+
+    // location state
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/'
 
     const handleForLogin = data => {
         setLoginError('')
@@ -19,6 +25,8 @@ const Login = () => {
                 const user = result.user;
                 console.log(user)
                 toast.success('Login successful.')
+                navigate(from, { replace: true })
+                
             })
             .catch(error => {
                 console.error(error.message);
