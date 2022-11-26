@@ -11,6 +11,7 @@ import Categories from '../pages/Home/Category/Categories/Categories';
 import Home from '../pages/Home/Home/Home';
 import Login from '../pages/Shared/Login/Login';
 import Signup from '../pages/Shared/Signup/Signup';
+import AdminRoute from './AdminRoute';
 import PrivateRoute from './PrivateRoute';
 
 export const router = createBrowserRouter([
@@ -53,11 +54,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/allSellers',
-                element: <Sellers></Sellers>
+                element: <AdminRoute><Sellers></Sellers></AdminRoute>
             },
             {
                 path: '/dashboard/allBuyers',
-                element: <Buyers></Buyers>
+                element: <AdminRoute> <Buyers></Buyers></AdminRoute>
             }
 
         ]
