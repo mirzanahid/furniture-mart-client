@@ -14,10 +14,28 @@ const Buyers = () => {
             return data;
         }
     })
+
+
+
+    const handlerForDeleteBuyers = (id) => {
+        const sure = window.confirm('Are you sure you want to delete this review')
+        if (sure) {
+            fetch(`http://localhost:5000/users/${id}`, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    // const remainingSellers = sellers.filter(sell => sell._id !== sellers._id)
+                    // console.log(remainingSellers)
+                    // setReviews(remainingReviews)
+                })
+        }
+
+    }
     console.log(Buyers)
     return (
         <div className='my-5'>
-            <h1 className='section_heading mb-5'>All Sellers</h1>
+            <h1 className='section_heading mb-5'>All Buyers</h1>
 
             <Table striped>
                 <thead>
@@ -35,7 +53,7 @@ const Buyers = () => {
                                 <td>{idk + 1}</td>
                                 <td>{Buyer.name}</td>
                                 <td>{Buyer.email}</td>
-                                <td><FaTrashAlt className='trash-icons'></FaTrashAlt></td>
+                                <td><button className='trash-icons' onClick={()=>handlerForDeleteBuyers(Buyer._id)}><FaTrashAlt></FaTrashAlt></button></td>
                             </tr>
                         )}
                 </tbody>

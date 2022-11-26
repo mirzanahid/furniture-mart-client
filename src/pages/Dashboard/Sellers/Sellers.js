@@ -14,7 +14,24 @@ const Sellers = () => {
             return data;
         }
     })
-    console.log(sellers)
+
+
+    const handlerForDeleteSeller = (id) => {
+        const sure = window.confirm('Are you sure you want to delete this review')
+        if (sure) {
+            fetch(`http://localhost:5000/users/${id}`, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    // const remainingSellers = sellers.filter(sell => sell._id !== sellers._id)
+                    // console.log(remainingSellers)
+                    // setReviews(remainingReviews)
+                })
+        }
+
+    }
+
     return (
         <div className='my-5'>
             <h1 className='section_heading mb-5'>All Sellers</h1>
@@ -35,12 +52,12 @@ const Sellers = () => {
                                 <td>{idk + 1}</td>
                                 <td>{seller.name}</td>
                                 <td>{seller.email}</td>
-                                <td><FaTrashAlt className='trash-icons'></FaTrashAlt></td>
+                                <td><button  className='trash-icons' onClick={()=>handlerForDeleteSeller(seller._id)}><FaTrashAlt></FaTrashAlt></button></td>
                             </tr>
                         )}
                 </tbody>
             </Table>
-
+        
         </div>
     );
 };

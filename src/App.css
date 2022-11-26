@@ -111,7 +111,11 @@
 
 /* table headers and data */
 /* icons  */
-.trash-icons {
+.trash-icons{
+  border: none;
+  background: transparent;
+}
+.trash-icons svg {
   font-size: 18px;
   color: #313D4D;
 }

@@ -26,14 +26,13 @@ const Signup = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user)
-                toast.success('sign up successful.')
                 const userInfo = {
                     displayName: data.name
                 }
                 updateUser(userInfo)
                     .then(() => {
                         saveUserToDb(data.name, data.email, data.role)
-                        
+
                     })
                     .catch(error => console.log(error))
             })
@@ -66,15 +65,16 @@ const Signup = () => {
         }
 
         // verify user by jwt
-        const getUserToken=email=>{
+        const getUserToken = email => {
             fetch(`http://localhost:5000/jwt?email=${email}`)
-            .then(res=>res.json())
-            .then(data=>{
-                if(data.accessToken){
-                    localStorage.setItem('accessToken', data.accessToken)
-                    navigate(from, { replace: true })
-                }
-            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.accessToken) {
+                        localStorage.setItem('accessToken', data.accessToken)
+                        navigate(from, { replace: true })
+                        toast.success('sign up successful.')
+                    }
+                })
         }
     }
     return (
