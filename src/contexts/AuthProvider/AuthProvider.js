@@ -12,8 +12,9 @@ import {
 export const AuthContext = createContext();
 const auth = getAuth(app)
 const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState({})
-    const [load, setLoad] = useState(true)
+    const [user, setUser] = useState({});
+    const [load, setLoad] = useState(true);
+    const [show, setShow] = useState(false);
 
     //  login with email and password
     const createUser = (email, password) => {
@@ -46,7 +47,7 @@ const AuthProvider = ({ children }) => {
         return () => unSubscribe();
     }, []);
     
-    const authInfo = { createUser, updateUser, user, login, logout,load }
+    const authInfo = { createUser, updateUser, user, login, logout,load,show,setShow }
     return (
         <AuthContext.Provider value={authInfo}>
             {children}

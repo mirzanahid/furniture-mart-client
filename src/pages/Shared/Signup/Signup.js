@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Form from 'react-bootstrap/Form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Col, Container, Row } from 'react-bootstrap';
 import googleicon from '../../../assets/google.png';
 import './Signup.css'
@@ -11,7 +11,14 @@ import toast from 'react-hot-toast';
 const Signup = () => {
     const { createUser, updateUser } = useContext(AuthContext)
     const { register, formState: { errors }, watch, handleSubmit } = useForm();
-    const [signUpError,setSignUpError] = useState('')
+    const [signUpError, setSignUpError] = useState('')
+    const navigate = useNavigate();
+
+
+    // location state
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/'
+
     const handleSignIn = data => {
         setSignUpError('')
         createUser(data.email, data.password)
@@ -23,16 +30,42 @@ const Signup = () => {
                     displayName: data.name
                 }
                 updateUser(userInfo)
-                    .then(() => { })
+                    .then(() => {
+                        saveUserToDb(data.name, data.email, data.role)
+                        navigate(from, { replace: true })
+                    })
                     .catch(error => console.log(error))
             })
-            .catch(error =>{
-                 console.error(error)
-                 if(error.message){
+            .catch(error => {
+                console.error(error)
+                if (error.message) {
                     setSignUpError('This email already in used please try another. ')
-                 }
-                  
+                }
+
+            })
+
+        const saveUserToDb = (name, email, role) => {
+            const user = {
+                name,
+                email,
+                role
+            };
+            fetch(`http://localhost:5000/users`, {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(user)
+            })
+                .then(res => res.json())
+                .then(data => {
+
+                    console.log(data)
                 })
+
+        }
+
+
     }
     return (
         <div className='furnitureMart-form'>

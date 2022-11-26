@@ -7,7 +7,7 @@ import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import './Header.css'
 
 const Header = () => {
-    const { user, logout } = useContext(AuthContext)
+    const { user, logout,setShow } = useContext(AuthContext)
 
     const handleForLogout = () => {
         logout()
@@ -16,12 +16,14 @@ const Header = () => {
             })
             .catch(error => { })
     }
-
+    const handleShow = () => setShow(true);
     return (
         <Navbar expand="lg" className='navbar-main'>
             <Container>
+                <Navbar.Toggle  aria-controls="basic-navbar-nav" />
+               
                 <Navbar.Brand><NavLink to={'/'}><img src="logo.svg" alt="logo" className='logo' /></NavLink></Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Link  onClick={handleShow} className='navbar-toggler-icon d-lg-none'></Link>
                 <Navbar.Collapse id="basic-navbar-nav d-flex align-items-center">
                     <Nav className="m-auto ">
                         <li><NavLink to={'/'}>Home</NavLink></li>

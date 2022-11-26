@@ -4,7 +4,9 @@
     padding: 15px 0 !important;
 
 }
-
+.navbar-toggler {
+    border: 0 !important;
+}
 .logo {
     width: 280px;
 }

@@ -16,8 +16,6 @@
   color: #ffffff;
 }
 
-
-
 .footer-btn {
   text-decoration: none;
   display: inline-block;
@@ -58,7 +56,34 @@
 }
 
 /* typography end */
+/* dashboard layout style start */
+.dash_navbar {
+  background-color: #fff;
+  padding: 20px 30px;
+}
 
+.dash-navbar-items {
+  list-style: none;
+
+}
+
+.dash-navbar-items li a {
+  font-size: 18px;
+  font-weight: 500;
+  font-family: 'Jost', sans-serif;
+  display: inline-block;
+  text-decoration: none;
+  color: #484F56;
+  margin-top: 24px;
+  transition: .4s;
+}
+.dash-navbar-items li a:hover{
+  color: #FD8311;
+}
+.dash-navbar-items li a .active{
+  color: #FD8311;
+}
+/* dashboard layout style end */
 /* responsive start */
 @media only screen and (max-width: 767.98px) {
   .regular-btn {
