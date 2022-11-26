@@ -11,8 +11,10 @@ import Categories from '../pages/Home/Category/Categories/Categories';
 import Home from '../pages/Home/Home/Home';
 import Login from '../pages/Shared/Login/Login';
 import Signup from '../pages/Shared/Signup/Signup';
-import AdminRoute from './AdminRoute';
+import AdminRoute from './RoleRoute';
 import PrivateRoute from './PrivateRoute';
+import MyOrders from '../pages/Dashboard/Buyers/MyOrders/MyOrders';
+import AddProduct from '../pages/Dashboard/Sellers/AddProduct/AddProduct';
 
 export const router = createBrowserRouter([
     {
@@ -59,6 +61,14 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/allBuyers',
                 element: <AdminRoute> <Buyers></Buyers></AdminRoute>
+            },
+            {
+                path: '/dashboard/myOrders',
+                element: <AdminRoute> <MyOrders></MyOrders></AdminRoute>
+            },
+            {
+                path: '/dashboard/addProduct',
+                element: <AdminRoute> <AddProduct></AddProduct></AdminRoute>
             }
 
         ]

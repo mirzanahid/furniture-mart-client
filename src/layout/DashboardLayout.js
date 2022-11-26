@@ -1,17 +1,16 @@
 import React, { useContext } from 'react';
-import { Link, NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 import Header from '../pages/Shared/Header/Header';
-import Alert from 'react-bootstrap/Alert';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { AuthContext } from '../contexts/AuthProvider/AuthProvider';
 import Footer from '../pages/Shared/Footer/Footer';
 import { Col, Container, Row } from 'react-bootstrap';
-import useAdmin from '../hooks/useAdmin';
+import useAdmin from '../hooks/useRole';
 
 const DashboardLayout = () => {
     const { show, setShow } = useContext(AuthContext);
     const { user } = useContext(AuthContext);
-    const [isAdmin] = useAdmin(user?.email);
+    const [isAdmin, isBuyer, isSeller] = useAdmin(user?.email);
     const handleClose = () => setShow(false);
     return (
         <div>
@@ -21,10 +20,18 @@ const DashboardLayout = () => {
                     <Col lg='3' className='d-none d-lg-block'>
                         <div className="dash_navbar">
                             <ul className='dash-navbar-items'>
-                                <li><NavLink className={({ isActive }) => isActive ? 'active' : undefined} to={"/dashboard/myOrders"}>My Orders</NavLink></li>
-                                <li><NavLink className={({ isActive }) => isActive ? 'active' : undefined} to={"/dashboard/allProducts"}>Add A Product</NavLink></li>
-                                <li><NavLink className={({ isActive }) => isActive ? 'active' : undefined} to={"/dashboard/myProducts"}>My Products</NavLink></li>
-                                <li><NavLink className={({ isActive }) => isActive ? 'active' : undefined} to={"/dashboard/myBuyers"}>My Buyers</NavLink></li>
+                                {
+                                    isBuyer &&
+                                    <li><NavLink className={({ isActive }) => isActive ? 'active' : undefined} to={"/dashboard/myOrders"}>My Orders</NavLink></li>
+                                }
+                                {
+                                    isSeller &&
+                                    <>
+                                        <li><NavLink className={({ isActive }) => isActive ? 'active' : undefined} to={"/dashboard/addProduct"}>Add A Product</NavLink></li>
+                                        <li><NavLink className={({ isActive }) => isActive ? 'active' : undefined} to={"/dashboard/myProducts"}>My Products</NavLink></li>
+                                        <li><NavLink className={({ isActive }) => isActive ? 'active' : undefined} to={"/dashboard/myBuyers"}>My Buyers</NavLink></li>
+                                    </>
+                                }
                                 {
                                     isAdmin &&
                                     <>
