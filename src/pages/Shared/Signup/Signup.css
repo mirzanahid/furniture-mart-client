@@ -35,6 +35,16 @@
     border-radius: 0;
 }
 
+.signup-login-form textarea {
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 30px;
+    color: #313D4D;
+    height: 50px;
+    border-radius: 0;
+}
+
 .signup-login-form select {
     font-family: 'Jost', sans-serif;
     font-size: 14px;
@@ -43,6 +53,11 @@
     color: #313D4D;
     height: 50px;
     border-radius: 0;
+}
+
+.signup-login-form  .imageFile{
+     padding-top: 9px;
+     padding-left: 15px;
 }
 
 .submit-btn {

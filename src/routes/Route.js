@@ -3,7 +3,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import DashboardLayout from '../layout/DashboardLayout';
 import Main from '../layout/Main';
 import Blog from '../pages/Blog/Blog';
-import Buyers from '../pages/Dashboard/Buyers/Buyers';
+
 import Dashboard from '../pages/Dashboard/Dashboard/Dashboard';
 import Sellers from '../pages/Dashboard/Sellers/Sellers';
 import Error from '../pages/Error/Error';
@@ -11,10 +11,11 @@ import Categories from '../pages/Home/Category/Categories/Categories';
 import Home from '../pages/Home/Home/Home';
 import Login from '../pages/Shared/Login/Login';
 import Signup from '../pages/Shared/Signup/Signup';
-import AdminRoute from './RoleRoute';
+import RoleRoute from './RoleRoute';
 import PrivateRoute from './PrivateRoute';
 import MyOrders from '../pages/Dashboard/Buyers/MyOrders/MyOrders';
 import AddProduct from '../pages/Dashboard/Sellers/AddProduct/AddProduct';
+import Buyers from '../pages/Dashboard/Buyers/Buyers/Buyers';
 
 export const router = createBrowserRouter([
     {
@@ -51,24 +52,20 @@ export const router = createBrowserRouter([
         errorElement: <Error></Error>,
         children: [
             {
-                path: '/dashboard',
-                element: <Dashboard></Dashboard>
-            },
-            {
                 path: '/dashboard/allSellers',
-                element: <AdminRoute><Sellers></Sellers></AdminRoute>
+                element: <RoleRoute><Sellers></Sellers></RoleRoute>
             },
             {
                 path: '/dashboard/allBuyers',
-                element: <AdminRoute> <Buyers></Buyers></AdminRoute>
+                element: <RoleRoute> <Buyers></Buyers></RoleRoute>
             },
             {
                 path: '/dashboard/myOrders',
-                element: <AdminRoute> <MyOrders></MyOrders></AdminRoute>
+                element: <RoleRoute> <MyOrders></MyOrders></RoleRoute>
             },
             {
                 path: '/dashboard/addProduct',
-                element: <AdminRoute> <AddProduct></AddProduct></AdminRoute>
+                element: <RoleRoute> <AddProduct></AddProduct></RoleRoute>
             }
 
         ]

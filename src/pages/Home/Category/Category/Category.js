@@ -1,9 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { Container, Row } from 'react-bootstrap';
+
 import CategoryItem from '../CategoryItem/CategoryItem';
 
 const Category = () => {
+
     const { data: categories = [] } = useQuery({
         queryKey: ['categories'],
         queryFn: async () => {
