@@ -64,25 +64,60 @@
 
 .dash-navbar-items {
   list-style: none;
+  margin-top: 30px;
 
 }
 
 .dash-navbar-items li a {
+  width: 100%;
   font-size: 18px;
   font-weight: 500;
   font-family: 'Jost', sans-serif;
   display: inline-block;
   text-decoration: none;
   color: #484F56;
-  margin-top: 24px;
+  margin-bottom: 24px;
   transition: .4s;
+  background: #fff;
+  padding: 10px 30px;
+  text-align: center;
+  border-radius: 5px;
 }
-.dash-navbar-items li a:hover{
-  color: #FD8311;
+
+.dash-navbar-items li a:hover {
+  color: #ffffff;
+  background: #484F56;
 }
-.dash-navbar-items li a .active{
-  color: #FD8311;
+
+.dash-navbar-items li .active {
+  color: #ffffff;
+  background: #484F56;
 }
+
+/* table headers and data */
+.table-headers th {
+  font-size: 20px;
+  font-weight: 600;
+  font-family: 'Jost', sans-serif;
+  color: #313D4D;
+}
+
+.table-data td {
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'Jost', sans-serif;
+  color: #484F56;
+}
+
+/* table headers and data */
+/* icons  */
+.trash-icons {
+  font-size: 18px;
+  color: #313D4D;
+}
+
+/* icons  */
+
 /* dashboard layout style end */
 /* responsive start */
 @media only screen and (max-width: 767.98px) {

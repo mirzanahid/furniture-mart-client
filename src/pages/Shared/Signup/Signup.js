@@ -21,6 +21,7 @@ const Signup = () => {
 
     const handleSignIn = data => {
         setSignUpError('')
+        // create new user 
         createUser(data.email, data.password)
             .then(result => {
                 const user = result.user;
@@ -32,7 +33,7 @@ const Signup = () => {
                 updateUser(userInfo)
                     .then(() => {
                         saveUserToDb(data.name, data.email, data.role)
-                        navigate(from, { replace: true })
+                        
                     })
                     .catch(error => console.log(error))
             })
@@ -43,7 +44,7 @@ const Signup = () => {
                 }
 
             })
-
+        // save user to database
         const saveUserToDb = (name, email, role) => {
             const user = {
                 name,
@@ -59,13 +60,22 @@ const Signup = () => {
             })
                 .then(res => res.json())
                 .then(data => {
-
+                    getUserToken(email)
                     console.log(data)
                 })
-
         }
 
-
+        // verify user by jwt
+        const getUserToken=email=>{
+            fetch(`http://localhost:5000/jwt?email=${email}`)
+            .then(res=>res.json())
+            .then(data=>{
+                if(data.accessToken){
+                    localStorage.setItem('accessToken', data.accessToken)
+                    navigate(from, { replace: true })
+                }
+            })
+        }
     }
     return (
         <div className='furnitureMart-form'>

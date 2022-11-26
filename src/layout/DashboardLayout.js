@@ -16,36 +16,35 @@ const DashboardLayout = () => {
             <Header></Header>
             <Container>
                 <Row>
-                    <Col lg='4' className='d-none d-lg-block'>
+                    <Col lg='3' className='d-none d-lg-block'>
                         <div className="dash_navbar">
                             <ul className='dash-navbar-items'>
-                                <li><NavLink>My Orders</NavLink></li>
-                                <li><NavLink>Add Product</NavLink></li>
-                                <li><NavLink>All Sellers</NavLink></li>
-                                <li><NavLink>All Buyers</NavLink></li>
+                                <li><NavLink className={({ isActive }) => isActive ? 'active' : undefined} to={"/dashboard/myOrders"}>My Orders</NavLink></li>
+                                <li><NavLink className={({ isActive }) => isActive ? 'active' : undefined} to={"/dashboard/allProducts"}>Add Product</NavLink></li>
+                                <li><NavLink className={({ isActive }) => isActive ? 'active' : undefined} to={"/dashboard/allSellers"}>All Sellers</NavLink></li>
+                                <li><NavLink className={({ isActive }) => isActive ? 'active' : undefined} to={"/dashboard/allBuyers"}>All Buyers</NavLink></li>
                             </ul>
                         </div>
                     </Col>
-                    <Col lg='8'>
-                        <h1>this is content</h1>
+                    <Col lg='9'>
                         <Outlet></Outlet>
                     </Col>
                 </Row>
 
                 <>
-                    <Offcanvas show={show} onHide={handleClose} responsive="lg" classNam="d-lg-none">
+                    <Offcanvas show={show} onHide={handleClose} responsive="lg" className="d-lg-none">
                         <Offcanvas.Header closeButton>
                             <Offcanvas.Title>Responsive offcanvas</Offcanvas.Title>
                         </Offcanvas.Header>
                         <Offcanvas.Body>
                                     <Col lg='4' className=' d-lg-none'>
                                         <div className="dash_navbar">
-                                            <ul className='dash-navbar-items'>
+                                            {/* <ul className='dash-navbar-items'>
                                                 <li><NavLink>My Orders</NavLink></li>
                                                 <li><NavLink>Add Product</NavLink></li>
                                                 <li><NavLink>All Sellers</NavLink></li>
                                                 <li><NavLink>All Buyers</NavLink></li>
-                                            </ul>
+                                            </ul> */}
                                         </div>
                                     </Col>
                         </Offcanvas.Body>
