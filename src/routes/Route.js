@@ -14,11 +14,8 @@ import AddProduct from '../pages/Dashboard/Sellers/AddProduct/AddProduct';
 import Buyers from '../pages/Dashboard/Buyers/Buyers/Buyers';
 import Sellers from '../pages/Dashboard/Sellers/Sellers/Sellers';
 import MyProducts from '../pages/Dashboard/Sellers/MyProducts/MyProducts';
-import SellerRoute from './SellerRoute';
-import AdminRoute from './AdminRoute';
-import BuyerRoute from './BuyerRoute';
 import MyProfile from '../pages/Dashboard/MyProfile/MyProfile';
-import RoleRoute from './AdminRoute';
+
 
 export const router = createBrowserRouter([
     {
@@ -60,23 +57,23 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/allSellers',
-                element: <AdminRoute><Sellers></Sellers></AdminRoute>
+                element: <Sellers></Sellers>
             },
             {
                 path: '/dashboard/allBuyers',
-                element: <AdminRoute> <Buyers></Buyers></AdminRoute>
+                element: <Buyers></Buyers>
             },
             {
                 path: '/dashboard/myOrders',
-                element: <BuyerRoute> <MyOrders></MyOrders></BuyerRoute>
+                element: <> <MyOrders></MyOrders></>
             },
             {
                 path: '/dashboard/addProduct',
-                element: <SellerRoute> <AddProduct></AddProduct></SellerRoute>
+                element: <> <AddProduct></AddProduct></>
             },
             {
                 path: '/dashboard/myProducts',
-                element: <SellerRoute> <MyProducts></MyProducts></SellerRoute>
+                element: <> <MyProducts></MyProducts></>
             }
 
         ]

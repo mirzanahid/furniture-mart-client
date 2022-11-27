@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import CategoriesSingleModal from '../CategoriesSingleModal/CategoriesSingleModal';
 import './CategoriesSingle.css'
 
-const CategoriesSingle = ({ categorySingle, setShow }) => {
+const CategoriesSingle = ({ categorySingle }) => {
+    const [show, setShow] = useState(false);
     const { product_title, location, original_price, selling_price, seller_name, used_year, photo, post_date } = categorySingle
-    console.log(categorySingle)
-    console.log(used_year, post_date)
+
     const handleShow = () => setShow(true);
+
     return (
         <Col lg='4'>
             <div className="categorySingle">
@@ -25,6 +27,14 @@ const CategoriesSingle = ({ categorySingle, setShow }) => {
                     <Link className='regular-btn mt-3' onClick={handleShow}>Book Now</Link>
                 </div>
             </div>
+
+            <>
+                {
+                    <CategoriesSingleModal setShow={setShow} show={show} categorySingle={categorySingle}></CategoriesSingleModal>
+                }
+            </>
+
+
         </Col>
     );
 };

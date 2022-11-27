@@ -119,10 +119,26 @@
   font-size: 18px;
   color: #313D4D;
 }
+.faTimes{
+  border: none;
+  display: block;
+  margin-left: auto;
+  margin-bottom: 20px;
+}
 
 /* icons  */
 
-/* dashboard layout style end */
+
+/* book now form design */
+
+.book_now_form{
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+
+
+
 /* responsive start */
 @media only screen and (max-width: 767.98px) {
   .regular-btn {

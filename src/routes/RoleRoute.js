@@ -5,20 +5,34 @@ import { Navigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthProvider/AuthProvider';
 import useRole from '../hooks/useRole';
 
-const AdminRoute = ({ children }) => {
+
+
+const RoleRoute = ({ children }) => {
     const { user, load } = useContext(AuthContext);
-    const [isAdmin, isRoleLoading] = useRole(user?.email)
+    const [isAdmin, isBuyer, isSeller, isRoleLoading] = useRole(user?.email)
     const location = useLocation();
 
     if (load || isRoleLoading) {
         return <Spinner className='loader' animation="border" variant="warning" />
     }
     if (user && isAdmin) {
+        console.log('admin')
+        return children
+
+    }
+    if (user && isBuyer) {
+        console.log('buyer')
+        return children
+
+    }
+    if (user && isSeller) {
+        console.log('seller')
         return children
 
     }
 
+    console.log(isAdmin, isBuyer, isSeller)
     return <Navigate to='/login' state={{ from: location }} replace></Navigate>
 };
 
-export default AdminRoute;
+export default RoleRoute;

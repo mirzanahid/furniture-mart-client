@@ -14,6 +14,7 @@ const SellerRoute = ({ children }) => {
         return <Spinner className='loader' animation="border" variant="warning" />
     }
     if (user && isSeller) {
+        console.log('seller')
         return children
     }
     return <Navigate to='/login' state={{ from: location }} replace></Navigate>

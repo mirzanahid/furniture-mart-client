@@ -13,9 +13,13 @@ const BuyerRoute = ({ children }) => {
     if (load || isRoleLoading) {
         return <Spinner className='loader' animation="border" variant="warning" />
     }
+
     if (user && isBuyer) {
+        console.log('buyer')
         return children
+
     }
+    console.log('buyer', isBuyer)
     return <Navigate to='/login' state={{ from: location }} replace></Navigate>
 };
 
