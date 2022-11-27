@@ -24,7 +24,7 @@ const useRole = email => {
                         setIsRoleLoading(false)
                     }
                 })
-
+     
         }
 
     }, [email, isAdmin, isBuyer, isSeller])

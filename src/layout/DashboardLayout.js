@@ -20,6 +20,7 @@ const DashboardLayout = () => {
                     <Col lg='3' className='d-none d-lg-block'>
                         <div className="dash_navbar">
                             <ul className='dash-navbar-items'>
+                                <li><NavLink className={({ isActive }) => isActive ? 'active' : undefined} to={"/dashboard"}>My Profile</NavLink></li>
                                 {
                                     isBuyer &&
                                     <li><NavLink className={({ isActive }) => isActive ? 'active' : undefined} to={"/dashboard/myOrders"}>My Orders</NavLink></li>

@@ -7,12 +7,8 @@ import { AuthContext } from '../../../../contexts/AuthProvider/AuthProvider';
 
 const AddProduct = () => {
     const { user } = useContext(AuthContext)
+    const imageHostKey = process.env.REACT_APP_img_key;
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const handleForAddProduct = data => {
-        console.log(data)
-    }
-
-
     const { data: categories = [] } = useQuery({
         queryKey: ['categories'],
         queryFn: async () => {
@@ -21,6 +17,63 @@ const AddProduct = () => {
             return data;
         }
     })
+
+
+    const handleForAddProduct = data => {
+
+
+        const image = data.imageFile[0]
+        const formData = new FormData();
+        formData.append('image', image);
+        const url = `https://api.imgbb.com/1/upload?expiration=600&key=${imageHostKey}`;
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+            .then(res => res.json())
+            .then(imgData => {
+                if (imgData.success) {
+                    const product = {
+                        product_title: data.productName,
+                        location: data.location,
+                        phone: data.phone,
+                        email: user?.email,
+                        seller_name: user?.displayName,
+                        original_price: data.buyingPrice,
+                        selling_price: data.sellingPrice,
+                        condition: data.conditionOfProduct,
+                        category_id: data.category,
+                        used_year: data.yearOfUsed,
+                        photo: imgData.data.url,
+                        description: data.description,
+                        post_date: `${new Date()}`,
+                        status: "available",
+                        advertise: "0"
+                    }
+
+                    fetch('http://localhost:5000/dashboard/addProduct', {
+                        method: 'POST',
+                        headers: {
+                            'content-type': "application/json"
+                        },
+                        body: JSON.stringify(product)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.acknowledged) {
+                                console.log('done')
+                            }
+                        })
+                        .catch(error => console.error(product));
+
+                }
+            })
+
+
+    }
+
+
+
 
     return (
 
@@ -39,7 +92,7 @@ const AddProduct = () => {
                                 <Form.Group className="mb-3" controlId="location">
                                     <Form.Label >Location:</Form.Label>
                                     <Form.Select className="mb-3" {...register("location", { required: true })}>
-                                        <option defaultChecked value="buy">Select Location</option>
+                                        <option defaultChecked>Select Location</option>
                                         <option value="Dhaka">Dhaka </option>
                                         <option value="Chittagong">Chittagong </option>
                                         <option value="Barisal">Barisal</option>
@@ -91,18 +144,18 @@ const AddProduct = () => {
                                         {errors.category && <p className='error-text' role="alert">{errors.category?.message}</p>}
                                     </Form.Select>
                                 </Form.Group>
-                                <Form.Group className="mb-3" controlId="yearOfPurchase">
-                                    <Form.Label>Year of purchase:</Form.Label>
-                                    <Form.Control type="text" {...register("purchaseYear", { required: "this field is required" })} placeholder="Purchase Year" />
+                                <Form.Group className="mb-3" controlId="yearOfUsed">
+                                    <Form.Label>Year of Used:</Form.Label>
+                                    <Form.Control type="text" {...register("yearOfUsed", { required: "this field is required" })} placeholder="Year of Used" />
                                     {errors.purchaseYear && <p className='error-text' role="alert">{errors.purchaseYear?.message}</p>}
                                 </Form.Group>
                                 <Form.Group controlId="imageFile" className="mb-3">
-                                    <Form.Label>Default file input example:</Form.Label>
+                                    <Form.Label>Upload Product Image:</Form.Label>
                                     <Form.Control className='imageFile' type="file"  {...register("imageFile", { required: "this field is required" })} />
                                     {errors.imageFile && <p className='error-text' role="alert">{errors.imageFile?.message}</p>}
                                 </Form.Group>
                                 <Form.Group className="mb-3" controlId="description">
-                                    <Form.Label>Description:</Form.Label>
+                                    <Form.Label>Product Description:</Form.Label>
                                     <Form.Control
                                         as="textarea"
                                         placeholder="Leave a comment here"

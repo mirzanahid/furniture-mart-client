@@ -17,16 +17,14 @@ const Sellers = () => {
 
 
     const handlerForDeleteSeller = (id) => {
-        const sure = window.confirm('Are you sure you want to delete this review')
+        const sure = window.confirm('Are you sure you want to delete this seller?')
         if (sure) {
             fetch(`http://localhost:5000/users/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
                 .then(data => {
-                    // const remainingSellers = sellers.filter(sell => sell._id !== sellers._id)
-                    // console.log(remainingSellers)
-                    // setReviews(remainingReviews)
+
                 })
         }
 
@@ -35,7 +33,6 @@ const Sellers = () => {
     return (
         <div className='my-5'>
             <h1 className='section_heading mb-5'>All Sellers</h1>
-
             <Table striped>
                 <thead>
                     <tr className='table-headers'>

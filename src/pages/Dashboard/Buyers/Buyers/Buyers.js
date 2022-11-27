@@ -53,7 +53,7 @@ const Buyers = () => {
                                 <td>{idk + 1}</td>
                                 <td>{Buyer.name}</td>
                                 <td>{Buyer.email}</td>
-                                <td><button className='trash-icons' onClick={()=>handlerForDeleteBuyers(Buyer._id)}><FaTrashAlt></FaTrashAlt></button></td>
+                                <td><button className='trash-icons' onClick={() => handlerForDeleteBuyers(Buyer._id)}><FaTrashAlt></FaTrashAlt></button></td>
                             </tr>
                         )}
                 </tbody>

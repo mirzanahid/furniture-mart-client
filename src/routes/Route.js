@@ -3,19 +3,22 @@ import { createBrowserRouter } from 'react-router-dom';
 import DashboardLayout from '../layout/DashboardLayout';
 import Main from '../layout/Main';
 import Blog from '../pages/Blog/Blog';
-
-import Dashboard from '../pages/Dashboard/Dashboard/Dashboard';
-import Sellers from '../pages/Dashboard/Sellers/Sellers';
 import Error from '../pages/Error/Error';
 import Categories from '../pages/Home/Category/Categories/Categories';
 import Home from '../pages/Home/Home/Home';
 import Login from '../pages/Shared/Login/Login';
 import Signup from '../pages/Shared/Signup/Signup';
-import RoleRoute from './RoleRoute';
 import PrivateRoute from './PrivateRoute';
 import MyOrders from '../pages/Dashboard/Buyers/MyOrders/MyOrders';
 import AddProduct from '../pages/Dashboard/Sellers/AddProduct/AddProduct';
 import Buyers from '../pages/Dashboard/Buyers/Buyers/Buyers';
+import Sellers from '../pages/Dashboard/Sellers/Sellers/Sellers';
+import MyProducts from '../pages/Dashboard/Sellers/MyProducts/MyProducts';
+import SellerRoute from './SellerRoute';
+import AdminRoute from './AdminRoute';
+import BuyerRoute from './BuyerRoute';
+import MyProfile from '../pages/Dashboard/MyProfile/MyProfile';
+import RoleRoute from './AdminRoute';
 
 export const router = createBrowserRouter([
     {
@@ -52,20 +55,28 @@ export const router = createBrowserRouter([
         errorElement: <Error></Error>,
         children: [
             {
+                path: '/dashboard',
+                element: <PrivateRoute><MyProfile></MyProfile></PrivateRoute>
+            },
+            {
                 path: '/dashboard/allSellers',
-                element: <RoleRoute><Sellers></Sellers></RoleRoute>
+                element: <AdminRoute><Sellers></Sellers></AdminRoute>
             },
             {
                 path: '/dashboard/allBuyers',
-                element: <RoleRoute> <Buyers></Buyers></RoleRoute>
+                element: <AdminRoute> <Buyers></Buyers></AdminRoute>
             },
             {
                 path: '/dashboard/myOrders',
-                element: <RoleRoute> <MyOrders></MyOrders></RoleRoute>
+                element: <BuyerRoute> <MyOrders></MyOrders></BuyerRoute>
             },
             {
                 path: '/dashboard/addProduct',
-                element: <RoleRoute> <AddProduct></AddProduct></RoleRoute>
+                element: <SellerRoute> <AddProduct></AddProduct></SellerRoute>
+            },
+            {
+                path: '/dashboard/myProducts',
+                element: <SellerRoute> <MyProducts></MyProducts></SellerRoute>
             }
 
         ]
