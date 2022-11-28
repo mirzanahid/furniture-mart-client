@@ -62,7 +62,7 @@ const MyOrders = () => {
                                 <td>{book.product_title}</td>
                                 <td>{book.product_price}</td>
                                 <td>{
-                                    book.payment_status !== 0 ?
+                                    book.payment_status === 0 ?
                                         "paid"
                                         :
                                         <button className='row_btn'><Link to={`/dashboard/payment/${book._id}`}>Pay</Link></button>

@@ -4,11 +4,14 @@ import { useForm } from 'react-hook-form';
 import Form from 'react-bootstrap/Form';
 import { useQuery } from '@tanstack/react-query';
 import { AuthContext } from '../../../../contexts/AuthProvider/AuthProvider';
+import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const AddProduct = () => {
     const { user } = useContext(AuthContext)
     const imageHostKey = process.env.REACT_APP_img_key;
     const { register, formState: { errors }, handleSubmit } = useForm();
+    const navigate = useNavigate();
     const { data: categories = [] } = useQuery({
         queryKey: ['categories'],
         queryFn: async () => {
@@ -48,7 +51,7 @@ const AddProduct = () => {
                         description: data.description,
                         post_date: `${new Date()}`,
                         status: "available",
-                        advertise: "0"
+                        advertise: "0",
                     }
 
                     fetch('http://localhost:5000/dashboard/addProduct', {
@@ -61,7 +64,9 @@ const AddProduct = () => {
                         .then(res => res.json())
                         .then(data => {
                             if (data.acknowledged) {
-                                console.log('done')
+
+                                navigate('/dashboard/myProducts')
+                                toast()
                             }
                         })
                         .catch(error => console.error(error));

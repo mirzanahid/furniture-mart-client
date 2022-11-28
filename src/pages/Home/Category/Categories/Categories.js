@@ -12,7 +12,7 @@ const Categories = () => {
 
     return (
         <div>
-            <h1>this is category items</h1>
+            <h3 className='section_heading'>this is category items</h3>
             <Container>
                 <Row className='my-5'>
                     {

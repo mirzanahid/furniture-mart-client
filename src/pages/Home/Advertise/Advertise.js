@@ -1,10 +1,30 @@
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import { Container, Row } from 'react-bootstrap';
+import AdvertiseSingle from './AdvertiseSingle';
 
 const Advertise = () => {
+    const { data: advertises = [] } = useQuery({
+        queryKey: ['advertise'],
+        queryFn: async () => {
+            const res = await fetch('http://localhost:5000/advertise');
+            const data = await res.json();
+            return data;
+        }
+    })
+
     return (
-        <div>
-            
+        <div className='mb-5'>
+            <Container>
+            <h3 className='section_heading my-5'>Advertises</h3>
+                <Row className='mt-5'>
+                    {
+                        advertises.map(advertise => <AdvertiseSingle key={advertise?._id} advertise={advertise}></AdvertiseSingle>)
+                    }
+                </Row>
+            </Container >
         </div>
+
     );
 };
 

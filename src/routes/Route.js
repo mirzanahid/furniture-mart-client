@@ -14,11 +14,12 @@ import AddProduct from '../pages/Dashboard/Sellers/AddProduct/AddProduct';
 import Buyers from '../pages/Dashboard/Buyers/Buyers/Buyers';
 import Sellers from '../pages/Dashboard/Sellers/Sellers/Sellers';
 import MyProducts from '../pages/Dashboard/Sellers/MyProducts/MyProducts';
-import MyProfile from '../pages/Dashboard/MyProfile/MyProfile';
 import SellerRoute from './SellerRoute';
 import BuyerRoute from './BuyerRoute';
 import AdminRoute from './AdminRoute';
 import Payment from '../pages/Dashboard/Buyers/Payment/Payment';
+import Advertise from '../pages/Home/Advertise/Advertise';
+import AllReport from '../pages/Dashboard/Buyers/AllReport/AllReport';
 
 
 export const router = createBrowserRouter([
@@ -45,9 +46,9 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/categories/:id',
-                element: <Categories></Categories>,
+                element: <PrivateRoute><Categories></Categories></PrivateRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/categories/${params.id}`)
-            }
+            },
         ]
     },
     {
@@ -55,10 +56,6 @@ export const router = createBrowserRouter([
         element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
         errorElement: <Error></Error>,
         children: [
-            {
-                path: '/dashboard/myProfile',
-                element: <PrivateRoute><MyProfile></MyProfile></PrivateRoute>
-            },
             {
                 path: '/dashboard/allSellers',
                 element: <AdminRoute><Sellers></Sellers></AdminRoute>
@@ -83,6 +80,10 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/myProducts',
                 element: <SellerRoute> <MyProducts></MyProducts></SellerRoute>
+            },
+            {
+                path: '/dashboard/allReport',
+                element: <SellerRoute> <AllReport></AllReport></SellerRoute>
             }
 
         ]

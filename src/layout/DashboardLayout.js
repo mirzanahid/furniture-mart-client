@@ -24,7 +24,6 @@ const DashboardLayout = () => {
                     <Col lg='3' className='d-none d-lg-block'>
                         <div className="dash_navbar">
                             <ul className='dash-navbar-items'>
-                                <li><NavLink className={({ isActive }) => isActive ? 'active' : undefined} to={"/dashboard/myProfile"}>My Profile</NavLink></li>
                                 {
                                     isBuyer &&
                                     <li><NavLink className={({ isActive }) => isActive ? 'active' : undefined} to={"/dashboard/myOrders"}>My Orders</NavLink></li>
@@ -34,7 +33,6 @@ const DashboardLayout = () => {
                                     <>
                                         <li><NavLink className={({ isActive }) => isActive ? 'active' : undefined} to={"/dashboard/addProduct"}>Add A Product</NavLink></li>
                                         <li><NavLink className={({ isActive }) => isActive ? 'active' : undefined} to={"/dashboard/myProducts"}>My Products</NavLink></li>
-                                        <li><NavLink className={({ isActive }) => isActive ? 'active' : undefined} to={"/dashboard/myBuyers"}>My Buyers</NavLink></li>
                                     </>
                                 }
                                 {
@@ -42,7 +40,7 @@ const DashboardLayout = () => {
                                     <>
                                         <li><NavLink className={({ isActive }) => isActive ? 'active' : undefined} to={"/dashboard/allSellers"}>All Sellers</NavLink></li>
                                         <li><NavLink className={({ isActive }) => isActive ? 'active' : undefined} to={"/dashboard/allBuyers"}>All Buyers</NavLink></li>
-                                        <li><NavLink className={({ isActive }) => isActive ? 'active' : undefined} to={"/dashboard/allBuyers"}>Reported Items</NavLink></li>
+                                        <li><NavLink className={({ isActive }) => isActive ? 'active' : undefined} to={"/dashboard/allReport"}>Reported Items</NavLink></li>
                                     </>
                                 }
                             </ul>

@@ -1,14 +1,60 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Col } from 'react-bootstrap';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../../contexts/AuthProvider/AuthProvider';
 import CategoriesSingleModal from '../CategoriesSingleModal/CategoriesSingleModal';
 import './CategoriesSingle.css'
 
 const CategoriesSingle = ({ categorySingle }) => {
+    const { user } = useContext(AuthContext)
     const [show, setShow] = useState(false);
-    const { product_title, location, original_price, selling_price, seller_name, used_year, photo, post_date } = categorySingle
+    const { _id, product_title, location, original_price, selling_price, seller_name, used_year, photo, post_date } = categorySingle
 
     const handleShow = () => setShow(true);
+    const handleForReport = () => {
+
+        const reportProduct = {
+            product_title: categorySingle.product_title,
+            name: user?.displayName,
+            product_id: _id,
+
+        }
+
+
+        fetch('http://localhost:5000/report', {
+            method: 'POST',
+            headers: {
+                'content-type': "application/json",
+            },
+            body: JSON.stringify(reportProduct)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    toast.success('report successful')
+                    const report = {
+                        user: user?.email,
+                        status: true
+                    }
+                    fetch(`http://localhost:5000/report/${categorySingle?._id}`, {
+                        method: 'PATCH',
+                        headers: {
+                            'content-type': "application/json",
+                        },
+                        body: JSON.stringify(report)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            console.log("post and patch done")
+                        })
+                }
+            })
+            .catch(error => console.error(error));
+
+
+
+    }
 
     return (
         <Col lg='4'>
@@ -24,7 +70,9 @@ const CategoriesSingle = ({ categorySingle }) => {
                     <p>Years of used: <span>{used_year}</span> Years</p>
                     <p>Post: <span>{post_date.slice(0, 15)}</span></p>
                     <p>Seller Name: <span>{seller_name}</span></p>
+                    <button onClick={handleForReport} className='row_btn d-block '>Report</button>
                     <Link className='regular-btn mt-3' onClick={handleShow}>Book Now</Link>
+
                 </div>
             </div>
 

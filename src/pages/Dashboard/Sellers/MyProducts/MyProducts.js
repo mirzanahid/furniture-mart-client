@@ -27,6 +27,31 @@ const MyProducts = () => {
                 })
         }
     }
+    console.log(myProduct._id
+    )
+
+    const handleForAdvertise = (id) => {
+        const updateAdvertise = {
+            advertise: '1'
+        }
+
+        fetch(`http://localhost:5000/advertise/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': "application/json",
+            },
+            body: JSON.stringify(updateAdvertise)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log("post and patch done")
+            })
+            .catch(error => console.error(error));
+    }
+
+
+
+
 
 
     return (
@@ -59,7 +84,7 @@ const MyProducts = () => {
                                 }</td>
                                 <td>
                                     {product.status !== 0 ?
-                                        <button>advertise</button>
+                                        <button onClick={() => handleForAdvertise(product._id)}>advertise</button>
                                         :
                                         null
                                     }</td>
