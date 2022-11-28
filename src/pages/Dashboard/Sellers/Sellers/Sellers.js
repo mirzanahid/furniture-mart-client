@@ -7,7 +7,7 @@ import { FaTrashAlt } from 'react-icons/fa';
 
 const Sellers = () => {
     const { data: sellers = [] } = useQuery({
-        queryKey: ['categories'],
+        queryKey: ['sellers'],
         queryFn: async () => {
             const res = await fetch('http://localhost:5000/allSellers');
             const data = await res.json();

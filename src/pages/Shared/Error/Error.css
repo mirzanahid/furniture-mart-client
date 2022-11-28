@@ -1,0 +1,23 @@
+.error-page {
+    height: 100vh;
+}
+
+.error_image img {
+    width: 500px;
+}
+
+
+.error-title {
+    font-family: 'Jost', sans-serif;
+    font-size: 60px;
+    font-weight: 600;
+    line-height: 60px;
+    color: #313D4D;
+}
+
+.error-paragraph {
+    font-family: 'Jost', sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    color: #313D4D;
+}

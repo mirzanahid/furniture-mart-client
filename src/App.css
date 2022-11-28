@@ -111,15 +111,17 @@
 
 /* table headers and data */
 /* icons  */
-.trash-icons{
+.trash-icons {
   border: none;
   background: transparent;
 }
+
 .trash-icons svg {
   font-size: 18px;
   color: #313D4D;
 }
-.faTimes{
+
+.faTimes {
   border: none;
   display: block;
   margin-left: auto;
@@ -131,13 +133,35 @@
 
 /* book now form design */
 
-.book_now_form{
+.book_now_form {
   margin-top: 0 !important;
   margin-bottom: 0 !important;
 }
 
+.myOrder-image {
+  width: 60px;
+  height: 60px;
+}
 
+.row_btn {
+  background: #313D4D;
+  color: #fff;
+  padding: 5px 20px;
+  border: none;
 
+}
+
+.row_btn a {
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  transition: .4s;
+}
+
+.row_btn a:hover {
+  color: #fff;
+
+}
 
 /* responsive start */
 @media only screen and (max-width: 767.98px) {

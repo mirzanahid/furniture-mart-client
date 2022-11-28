@@ -3,14 +3,14 @@ import { useContext } from 'react';
 import { Spinner } from 'react-bootstrap';
 import { Navigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthProvider/AuthProvider';
-import useRole from '../hooks/useRole';
+import useSeller from '../hooks/useSeller';
 
 const SellerRoute = ({ children }) => {
     const { user, load } = useContext(AuthContext);
-    const [isSeller, isRoleLoading] = useRole(user?.email)
+    const [isSeller, isSellerLoading] = useSeller(user?.email)
     const location = useLocation();
 
-    if (load || isRoleLoading) {
+    if (load || isSellerLoading) {
         return <Spinner className='loader' animation="border" variant="warning" />
     }
     if (user && isSeller) {

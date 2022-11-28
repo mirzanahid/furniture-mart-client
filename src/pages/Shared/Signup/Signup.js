@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Form from 'react-bootstrap/Form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -7,17 +7,35 @@ import googleicon from '../../../assets/google.png';
 import './Signup.css'
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import toast from 'react-hot-toast';
+import useToken from '../../../hooks/useToken';
+import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import app from '../../../firebase/firebase.config';
+
+
+
+const auth = getAuth(app)
+// google provider
+const provider = new GoogleAuthProvider();
 
 const Signup = () => {
     const { createUser, updateUser } = useContext(AuthContext)
     const { register, formState: { errors }, watch, handleSubmit } = useForm();
-    const [signUpError, setSignUpError] = useState('')
+    const [signUpError, setSignUpError] = useState('');
+    const [createdUserEmail, setcreatedUserEmail] = useState('')
+    const [token] = useToken(createdUserEmail);
     const navigate = useNavigate();
-
 
     // location state
     const location = useLocation();
-    const from = location.state?.from?.pathname || '/'
+    const from = location.state?.from?.pathname || '/';
+
+    useEffect(() => {
+        if (token) {
+            navigate(from, { replace: true })
+            toast.success('sign up successful.')
+        };
+    }, [token, navigate, from])
+
 
     const handleSignIn = data => {
         setSignUpError('')
@@ -25,13 +43,13 @@ const Signup = () => {
         createUser(data.email, data.password)
             .then(result => {
                 const user = result.user;
-                console.log(user)
                 const userInfo = {
                     displayName: data.name
                 }
                 updateUser(userInfo)
                     .then(() => {
-                        saveUserToDb(data.name, data.email, data.role)
+
+                        saveUserToDb(user?.displayName, user?.email, data.role)
 
                     })
                     .catch(error => console.log(error))
@@ -41,42 +59,43 @@ const Signup = () => {
                 if (error.message) {
                     setSignUpError('This email already in used please try another. ')
                 }
-
             })
-        // save user to database
-        const saveUserToDb = (name, email, role) => {
-            const user = {
-                name,
-                email,
-                role
-            };
-            fetch(`http://localhost:5000/users`, {
-                method: 'POST',
-                headers: {
-                    'content-type': 'application/json'
-                },
-                body: JSON.stringify(user)
-            })
-                .then(res => res.json())
-                .then(data => {
-                    getUserToken(email)
-                    console.log(data)
-                })
-        }
+    };
 
-        // verify user by jwt
-        const getUserToken = email => {
-            fetch(`http://localhost:5000/jwt?email=${email}`)
-                .then(res => res.json())
-                .then(data => {
-                    if (data.accessToken) {
-                        localStorage.setItem('accessToken', data.accessToken)
-                        navigate(from, { replace: true })
-                        toast.success('sign up successful.')
-                    }
-                })
-        }
+    // log in with google 
+    const handlerForGoogleSignin = () => {
+        signInWithPopup(auth, provider)
+            .then(result => {
+                const user = result.user;
+                saveUserToDb(user?.displayName, user?.email, "buy")
+            })
+            .catch(error => {
+                console.error('error', error)
+            })
+    };
+
+    // save user to database
+    const saveUserToDb = (name, email, role) => {
+        const user = {
+            name,
+            email,
+            role
+        };
+        fetch(`http://localhost:5000/users/${email}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                setcreatedUserEmail(email)
+            })
     }
+
+
+
     return (
         <div className='furnitureMart-form'>
             <Container>
@@ -128,7 +147,7 @@ const Signup = () => {
                             </Form>
                             <div className="button-group">
 
-                                <button className='social-signup'><img className='google-icon' src={googleicon} alt="google icon" /> Continue with Google</button>
+                                <button className='social-signup' onClick={handlerForGoogleSignin}><img className='google-icon' src={googleicon} alt="google icon" /> Continue with Google</button>
                             </div>
 
                         </div>

@@ -3,16 +3,16 @@ import { useContext } from 'react';
 import { Spinner } from 'react-bootstrap';
 import { Navigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthProvider/AuthProvider';
-import useRole from '../hooks/useRole';
+import useAdmin from '../hooks/useAdmin';
 
 
 
-const RoleRoute = ({ children }) => {
+const AdminRoute = ({ children }) => {
     const { user, load } = useContext(AuthContext);
-    const [isAdmin, isBuyer, isSeller, isRoleLoading] = useRole(user?.email)
+    const [isAdmin, isAdminLoading] = useAdmin(user?.email)
     const location = useLocation();
 
-    if (load || isRoleLoading) {
+    if (load || isAdminLoading) {
         return <Spinner className='loader' animation="border" variant="warning" />
     }
     if (user && isAdmin) {
@@ -20,19 +20,9 @@ const RoleRoute = ({ children }) => {
         return children
 
     }
-    if (user && isBuyer) {
-        console.log('buyer')
-        return children
-
-    }
-    if (user && isSeller) {
-        console.log('seller')
-        return children
-
-    }
-
-    console.log(isAdmin, isBuyer, isSeller)
+    console.log(isAdmin)
+  
     return <Navigate to='/login' state={{ from: location }} replace></Navigate>
 };
 
-export default RoleRoute;
+export default AdminRoute;

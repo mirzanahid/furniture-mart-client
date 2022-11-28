@@ -64,17 +64,11 @@ const MyProducts = () => {
                                         null
                                     }</td>
                                 <td><button className='trash-icons' onClick={() => handlerForDeleteProduct(product._id)}><FaTrashAlt></FaTrashAlt></button></td>
-
-
                             </tr>
-
-
                         )
-
                     }
                 </tbody>
             </Table>
-
         </div>
     );
 };

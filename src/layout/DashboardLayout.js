@@ -5,12 +5,16 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import { AuthContext } from '../contexts/AuthProvider/AuthProvider';
 import Footer from '../pages/Shared/Footer/Footer';
 import { Col, Container, Row } from 'react-bootstrap';
-import useAdmin from '../hooks/useRole';
+import useAdmin from '../hooks/useAdmin';
+import useBuyer from '../hooks/useBuyer';
+import useSeller from '../hooks/useSeller';
 
 const DashboardLayout = () => {
     const { show, setShow } = useContext(AuthContext);
     const { user } = useContext(AuthContext);
-    const [isAdmin, isBuyer, isSeller] = useAdmin(user?.email);
+    const [isAdmin] = useAdmin(user?.email);
+    const [isBuyer] = useBuyer(user?.email);
+    const [isSeller] = useSeller(user?.email);
     const handleClose = () => setShow(false);
     return (
         <div>
@@ -20,7 +24,7 @@ const DashboardLayout = () => {
                     <Col lg='3' className='d-none d-lg-block'>
                         <div className="dash_navbar">
                             <ul className='dash-navbar-items'>
-                                <li><NavLink className={({ isActive }) => isActive ? 'active' : undefined} to={"/dashboard"}>My Profile</NavLink></li>
+                                <li><NavLink className={({ isActive }) => isActive ? 'active' : undefined} to={"/dashboard/myProfile"}>My Profile</NavLink></li>
                                 {
                                     isBuyer &&
                                     <li><NavLink className={({ isActive }) => isActive ? 'active' : undefined} to={"/dashboard/myOrders"}>My Orders</NavLink></li>

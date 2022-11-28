@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Form from 'react-bootstrap/Form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -6,11 +6,20 @@ import { Col, Container, Row } from 'react-bootstrap';
 import googleicon from '../../../assets/google.png';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import toast from 'react-hot-toast';
+import useToken from '../../../hooks/useToken';
+import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import app from '../../../firebase/firebase.config';
+
+const auth = getAuth(app)
+// google provider
+const provider = new GoogleAuthProvider();
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { login } = useContext(AuthContext);
     const [loginError, setLoginError] = useState('')
+    const [registerdEmail, setRegisterEmail] = useState('')
+    const [token] = useToken(registerdEmail)
     const navigate = useNavigate()
 
 
@@ -18,15 +27,22 @@ const Login = () => {
     const location = useLocation();
     const from = location.state?.from?.pathname || '/'
 
+
+    useEffect(() => {
+        if (token) {
+            toast.success('Login successful.')
+            navigate(from, { replace: true })
+        }
+    }, [token, navigate, from])
+
+
     const handleForLogin = data => {
         setLoginError('')
         login(data.email, data.password)
             .then(result => {
                 const user = result.user;
+                setRegisterEmail(user.email)
                 console.log(user)
-                toast.success('Login successful.')
-                navigate(from, { replace: true })
-                
             })
             .catch(error => {
                 console.error(error.message);
@@ -36,6 +52,43 @@ const Login = () => {
 
             })
     }
+
+    //log in with google 
+    const handlerForGoogleSignin = () => {
+        signInWithPopup(auth, provider)
+            .then(result => {
+                const user = result.user;
+                saveUserToDb(user?.displayName, user?.email, "buy")
+            })
+            .catch(error => {
+                console.error('error', error)
+            })
+    }
+
+    // save user to database
+    const saveUserToDb = (name, email, role) => {
+        const user = {
+            name,
+            email,
+            role
+        };
+        fetch(`http://localhost:5000/users/${email}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                setRegisterEmail(email)
+            })
+    }
+
+
+
+
+
     return (
         <div>
             <Container>
@@ -63,7 +116,7 @@ const Login = () => {
                             </Form>
                             <div className="button-group">
 
-                                <button className='social-signup'><img className='google-icon' src={googleicon} alt="" /> Continue with Google</button>
+                                <button className='social-signup' onClick={handlerForGoogleSignin}><img className='google-icon' src={googleicon} alt="" /> Continue with Google</button>
                             </div>
 
                         </div>

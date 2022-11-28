@@ -3,7 +3,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import DashboardLayout from '../layout/DashboardLayout';
 import Main from '../layout/Main';
 import Blog from '../pages/Blog/Blog';
-import Error from '../pages/Error/Error';
+import Error from '../pages/Shared/Error/Error';
 import Categories from '../pages/Home/Category/Categories/Categories';
 import Home from '../pages/Home/Home/Home';
 import Login from '../pages/Shared/Login/Login';
@@ -15,6 +15,10 @@ import Buyers from '../pages/Dashboard/Buyers/Buyers/Buyers';
 import Sellers from '../pages/Dashboard/Sellers/Sellers/Sellers';
 import MyProducts from '../pages/Dashboard/Sellers/MyProducts/MyProducts';
 import MyProfile from '../pages/Dashboard/MyProfile/MyProfile';
+import SellerRoute from './SellerRoute';
+import BuyerRoute from './BuyerRoute';
+import AdminRoute from './AdminRoute';
+import Payment from '../pages/Dashboard/Buyers/Payment/Payment';
 
 
 export const router = createBrowserRouter([
@@ -52,28 +56,33 @@ export const router = createBrowserRouter([
         errorElement: <Error></Error>,
         children: [
             {
-                path: '/dashboard',
+                path: '/dashboard/myProfile',
                 element: <PrivateRoute><MyProfile></MyProfile></PrivateRoute>
             },
             {
                 path: '/dashboard/allSellers',
-                element: <Sellers></Sellers>
+                element: <AdminRoute><Sellers></Sellers></AdminRoute>
             },
             {
                 path: '/dashboard/allBuyers',
-                element: <Buyers></Buyers>
+                element: <AdminRoute><Buyers></Buyers></AdminRoute>
             },
             {
                 path: '/dashboard/myOrders',
-                element: <> <MyOrders></MyOrders></>
+                element: <BuyerRoute> <MyOrders></MyOrders></BuyerRoute>
+            },
+            {
+                path: '/dashboard/payment/:id',
+                element: <BuyerRoute> <Payment></Payment></BuyerRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/payment/${params.id}`)
             },
             {
                 path: '/dashboard/addProduct',
-                element: <> <AddProduct></AddProduct></>
+                element: <SellerRoute> <AddProduct></AddProduct></SellerRoute>
             },
             {
                 path: '/dashboard/myProducts',
-                element: <> <MyProducts></MyProducts></>
+                element: <SellerRoute> <MyProducts></MyProducts></SellerRoute>
             }
 
         ]

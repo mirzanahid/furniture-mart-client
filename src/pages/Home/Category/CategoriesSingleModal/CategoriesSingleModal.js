@@ -12,10 +12,38 @@ const CategoriesSingleModal = ({ setShow, show, categorySingle }) => {
     const { register, formState: { errors }, handleSubmit } = useForm();
 
     const handleForBook = data => {
+        const bookingProduct = {
+            product_title: categorySingle.product_title,
+            phone: data.phone,
+            email: user?.email,
+            buyer_name: user?.displayName,
+            product_price: categorySingle.selling_price,
+            photo: categorySingle.photo,
+            product_id:categorySingle._id,
+            meeting_location: data.meetingLocation,
+            payment_status: "1"
+        }
 
+        fetch('http://localhost:5000/bookings', {
+            method: 'POST',
+            headers: {
+                'content-type': "application/json",
+                authorization:  `bearer ${localStorage.getItem('accessToken')}`
+            },
+            body: JSON.stringify(bookingProduct)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    console.log('booking done')
+                }
+            })
+            .catch(error => console.error(error));
     }
-
     const handleClose = () => setShow(false);
+
+
+
 
     return (
         <>
@@ -65,11 +93,6 @@ const CategoriesSingleModal = ({ setShow, show, categorySingle }) => {
                         <input className='submit-btn' value="Submit" type="submit" />
                     </Form>
                 </div>
-
-
-
-
-
             </Modal>
         </>
     );
