@@ -42,7 +42,6 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 setRegisterEmail(user.email)
-                console.log(user)
             })
             .catch(error => {
                 console.error(error.message);
@@ -85,10 +84,6 @@ const Login = () => {
                 setRegisterEmail(email)
             })
     }
-
-
-
-
 
     return (
         <div>

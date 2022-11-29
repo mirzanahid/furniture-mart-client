@@ -1,0 +1,41 @@
+.accordion-item {
+    margin-bottom: 15px;
+    border-radius: 0;
+    border: none;
+
+}
+
+button.accordion-button:not(.collapsed) {
+    background-color: #313D4D;
+    color: #fff;
+    font-weight: 600;
+    box-shadow: none;
+}
+
+.accordion-body {
+    font-size: 15px;
+    line-height: 25px;
+    color: #000;
+}
+
+button.accordion-button:focus {
+    outline: 0;
+    box-shadow: none;
+    background-color: #313D4D;
+    color: #fff;
+    font-weight: 600;
+}
+
+button.accordion-button {
+    background-color: #313D4D;
+    color: #fff;
+    font-weight: 600;
+}
+
+.blog p {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    font-family: 'Jost', sans-serif;
+    color: #313D4D;
+}

@@ -56,13 +56,14 @@
   font-weight: 500;
   color: #313D4D;
 }
-.title{
+
+.title {
   text-align: center;
 }
 
 .title h3 {
   font-family: 'Jost', sans-serif;
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 500;
   color: #313D4D;
   position: relative;
@@ -187,11 +188,31 @@
 
 }
 
-.success_toggle{
+.success_toggle {
   font-family: 'Jost', sans-serif;
   font-size: 14px;
   font-weight: 500;
   color: green;
+}
+
+.category_title_header {
+  background: #313D4D;
+  color: #ffffff;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.category_title_header h3 {
+  color: #ffffff;
+  text-transform: capitalize;
+  font-family: 'Jost', sans-serif;
+  font-size: 28px;
+  font-weight: 500;
+
+
 }
 
 
@@ -202,6 +223,7 @@
 
   }
 }
+
 /* responsive start */
 @media only screen and (max-width: 767.98px) {
   .regular-btn {

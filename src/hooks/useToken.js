@@ -14,7 +14,6 @@ const useToken = email => {
                     }
                 })
         }
-
     }, [email, token])
     return [token]
 }

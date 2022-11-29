@@ -16,7 +16,6 @@ const BuyerRoute = ({ children }) => {
     }
 
     if (user && isBuyer) {
-        console.log('buyer')
         return children
 
     }

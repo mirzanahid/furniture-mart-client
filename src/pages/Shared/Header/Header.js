@@ -4,10 +4,11 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
-import './Header.css'
+import './Header.css';
+import logo from '../../../assets/logo1.png'
 
 const Header = () => {
-    const { user, logout,setShow } = useContext(AuthContext)
+    const { user, logout, setShow } = useContext(AuthContext)
 
     const handleForLogout = () => {
         logout()
@@ -20,10 +21,10 @@ const Header = () => {
     return (
         <Navbar expand="lg" className='navbar-main'>
             <Container>
-                <Navbar.Toggle  aria-controls="basic-navbar-nav" />
-               
-                <Navbar.Brand><NavLink to={'/'}><img src="logo.svg" alt="logo" className='logo' /></NavLink></Navbar.Brand>
-                <Link  onClick={handleShow} className='navbar-toggler-icon d-lg-none'></Link>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+
+                <Navbar.Brand><NavLink to={'/'}><img src={logo} alt="logo" className='logo' /></NavLink></Navbar.Brand>
+                <Link onClick={handleShow} className='navbar-toggler-icon d-lg-none'></Link>
                 <Navbar.Collapse id="basic-navbar-nav d-flex align-items-center">
                     <Nav className="m-auto ">
                         <li><NavLink to={'/'}>Home</NavLink></li>

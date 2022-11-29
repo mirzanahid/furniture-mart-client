@@ -1,10 +1,14 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 
 const CheckoutForm = ({ bookings }) => {
     const [clientSecret, setClientSecret] = useState("");
-    const [cardError, setCardError] = useState('')
-    const { price, name, email } = bookings
+    const [cardError, setCardError] = useState('');
+    const [success, setSuccess] = useState('');
+    const [processing, setProcessing] = useState(false);
+    const [transactionId, setTransactionId] = useState();
+    const { price, name, email, product_id, _id } = bookings;
 
     const stripe = useStripe();
     const elements = useElements();
@@ -45,7 +49,8 @@ const CheckoutForm = ({ bookings }) => {
         else {
             setCardError('');
         }
-
+        setSuccess('');
+        setProcessing(true)
         const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(
             clientSecret,
             {
@@ -63,7 +68,67 @@ const CheckoutForm = ({ bookings }) => {
             setCardError(confirmError.message);
             return
         }
-        console.log(paymentIntent)
+        if (paymentIntent.status === "succeeded") {
+            const payment = {
+                price,
+                user_name: name,
+                email: email,
+                transactionId: transactionId,
+                payment: "paid",
+                product_id: product_id
+
+            }
+
+
+            fetch('http://localhost:5000/payment', {
+                method: 'POST',
+                headers: {
+                    'content-type': "application/json",
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                },
+                body: JSON.stringify(payment)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.acknowledged) {
+                        const updateBooking = {
+                            payment_status: "1"
+                        }
+                        fetch(`http://localhost:5000/bookings/${_id}`, {
+                            method: 'PUT',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                            body: JSON.stringify(updateBooking)
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                const updateCategories={
+                                    status: "sold"
+                                }
+                                fetch(`http://localhost:5000/productCategories/${product_id}`, {
+                                    method: 'PUT',
+                                    headers: {
+                                        'content-type': 'application/json'
+                                    },
+                                    body: JSON.stringify(updateCategories)
+                                })
+                                    .then(res => res.json())
+                                    .then(data => {
+                                        setSuccess("Congrats! your payment completed");
+                                        setTransactionId(paymentIntent.id)
+                                        toast.success('your payment successful.')
+
+                                    })
+
+                            })
+                    }
+                })
+
+
+        }
+        setProcessing(false)
+
 
     }
     return (
@@ -85,12 +150,17 @@ const CheckoutForm = ({ bookings }) => {
                         },
                     }}
                 />
-                <button className='row_btn' type="submit" disabled={!stripe || !clientSecret}>
+                <button className='row_btn' type="submit" disabled={!stripe || !clientSecret || processing}>
                     Pay
                 </button>
             </form>
-
             <p className='error-text'>{cardError}</p>
+            {
+                success && <div>
+                    <p className='success_toggle'>{success}</p>
+                    <p className='success_toggle text-black'>Your transactionId <span className='text-bold'>{transactionId}</span></p>
+                </div>
+            }
         </>
     );
 };

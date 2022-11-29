@@ -16,7 +16,7 @@ const useAdmin = email => {
   
                 })
         }
-      console.log("check admin",isAdmin)
+
     }, [email,isAdmin])
     return [isAdmin,isAdminLoading]
 }

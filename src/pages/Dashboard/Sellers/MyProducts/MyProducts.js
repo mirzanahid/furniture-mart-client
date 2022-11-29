@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import { AuthContext } from '../../../../contexts/AuthProvider/AuthProvider';
 import { FaTrashAlt } from 'react-icons/fa';
+import toast from 'react-hot-toast';
 const MyProducts = () => {
     const { user } = useContext(AuthContext)
 
@@ -44,6 +45,7 @@ const MyProducts = () => {
         })
             .then(res => res.json())
             .then(data => {
+                toast.success("you successfully advertise this product")
                 console.log("post and patch done")
             })
             .catch(error => console.error(error));
@@ -77,14 +79,22 @@ const MyProducts = () => {
                                 <td>{product.product_title}</td>
                                 <td>{product.selling_price}</td>
                                 <td>{product.post_date.slice(0, 15)}</td>
-                                <td>{product.status !== 0 ?
-                                    "available"
+                                <td>{product.status !== "sold" ?
+                                    <p>available</p>
                                     :
-                                    "sold"
+                                    <p>sold</p>
                                 }</td>
                                 <td>
-                                    {product.status !== 0 ?
-                                        <button onClick={() => handleForAdvertise(product._id)}>advertise</button>
+                                    {product.status === 'available' ?
+                                        <>
+                                            {
+                                                product.advertise === '0' ?
+                                                    <button onClick={() => handleForAdvertise(product._id)}>advertise</button>
+                                                    :
+                                                    <p>advertised</p>
+                                            }
+
+                                        </>
                                         :
                                         null
                                     }</td>

@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import Table from 'react-bootstrap/Table';
+import toast from 'react-hot-toast';
 import { FaTrashAlt } from 'react-icons/fa';
 
 
@@ -16,14 +17,22 @@ const Sellers = () => {
     })
 
 
-    const handlerForDeleteSeller = (id) => {
-        const sure = window.confirm('Are you sure you want to delete this seller?')
+    const handlerForDeleteSeller = (id, email) => {
+        const sure = window.confirm('Are you sure you want to delete this seller? this sellers products also delete!')
         if (sure) {
             fetch(`http://localhost:5000/users/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
                 .then(data => {
+                    fetch(`http://localhost:5000/user/delete/${email}`, {
+                        method: 'DELETE'
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+
+                            toast.success('You successfully delete the seller and sellers products.')
+                        })
                 })
         }
     }
@@ -42,7 +51,7 @@ const Sellers = () => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log("post and patch done")
+                    toast.success('You successfully verify this seller')
                 })
         }
 
@@ -77,7 +86,7 @@ const Sellers = () => {
                                             <button className='trash-icons row_btn' onClick={() => handlerForVerifySeller(seller.email)}>Verify</button>
                                     }
                                 </td>
-                                <td><button className='trash-icons' onClick={() => handlerForDeleteSeller(seller._id)}><FaTrashAlt></FaTrashAlt></button></td>
+                                <td><button className='trash-icons' onClick={() => handlerForDeleteSeller(seller._id, seller.email)}><FaTrashAlt></FaTrashAlt></button></td>
                             </tr>
                         )}
                 </tbody>

@@ -16,7 +16,6 @@ const useSeller = email => {
                         setIsSellerLoading(false)
                     }
                 })
-            console.log(isSeller)
         }
 
     }, [email, isSeller])
