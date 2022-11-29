@@ -7,13 +7,10 @@ import toast from 'react-hot-toast';
 
 
 const CategoriesSingleModal = ({ setShow, show, categorySingle }) => {
-
     const { user } = useContext(AuthContext);
     const { displayName, email } = user;
     const { register, formState: { errors }, handleSubmit } = useForm();
-
     const handleClose = () => setShow(false);
-
     const handleForBook = data => {
         const bookingProduct = {
             product_title: categorySingle.product_title,
@@ -26,8 +23,7 @@ const CategoriesSingleModal = ({ setShow, show, categorySingle }) => {
             meeting_location: data.meetingLocation,
             payment_status: "0"
         }
-
-        fetch('http://localhost:5000/bookings', {
+        fetch('https://furniture-mart-server-pink.vercel.app/bookings', {
             method: 'POST',
             headers: {
                 'content-type': "application/json",
@@ -40,7 +36,6 @@ const CategoriesSingleModal = ({ setShow, show, categorySingle }) => {
                 if (data.acknowledged) {
                     toast.success('product booked successfully')
                     handleClose()
-                    console.log('booking done')
                 }
             })
             .catch(error => console.error(error));

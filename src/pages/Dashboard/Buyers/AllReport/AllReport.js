@@ -10,17 +10,16 @@ const AllReport = () => {
     const { data: reports = [], refetch } = useQuery({
         queryKey: ['reports'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/report');
+            const res = await fetch('https://furniture-mart-server-pink.vercel.app/report');
             const data = await res.json();
             return data;
         }
     })
-    console.log(reports)
 
     const handlerForDeleteReport = (id) => {
         const sure = window.confirm('Are you sure you want to delete this Report?')
         if (sure) {
-            fetch(`http://localhost:5000/report/${id}`, {
+            fetch(`https://furniture-mart-server-pink.vercel.app/report/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
@@ -37,12 +36,12 @@ const AllReport = () => {
     const handlerForDeleteReportedProduct = (reportItemId, reportId) => {
         const sure = window.confirm('Are you sure you want to delete this Reported Item?')
         if (sure) {
-            fetch(`http://localhost:5000/reported/item/${reportItemId}`, {
+            fetch(`https://furniture-mart-server-pink.vercel.app/reported/item/${reportItemId}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
                 .then(data => {
-                    fetch(`http://localhost:5000/report/${reportId}`, {
+                    fetch(`https://furniture-mart-server-pink.vercel.app/report/${reportId}`, {
                         method: 'DELETE'
                     })
                         .then(res => res.json())

@@ -12,7 +12,7 @@ const MyOrders = () => {
     const { data: bookings = [] } = useQuery({
         queryKey: ['bookings'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/bookings/${user?.email}`, {
+            const res = await fetch(`https://furniture-mart-server-pink.vercel.app/bookings/${user?.email}`, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }
@@ -26,7 +26,7 @@ const MyOrders = () => {
     const handlerForDeleteOrder = (id) => {
         const sure = window.confirm('Are you sure you want to delete this order?')
         if (sure) {
-            fetch(`http://localhost:5000/order/${id}`, {
+            fetch(`https://furniture-mart-server-pink.vercel.app/order/${id}`, {
                 method: 'DELETE',
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`

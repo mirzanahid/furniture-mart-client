@@ -19,15 +19,11 @@ const CategoriesSingle = ({ categorySingle }) => {
     const { data: sellers = [] } = useQuery({
         queryKey: ['sellers'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/user/verity/${email}`);
+            const res = await fetch(`https://furniture-mart-server-pink.vercel.app/user/verity/${email}`);
             const data = await res.json();
             return data;
         }
     })
-
-    console.log(sellers)
-
-
 
     const handleForReport = () => {
         const reportProduct = {
@@ -36,7 +32,7 @@ const CategoriesSingle = ({ categorySingle }) => {
             product_id: _id,
 
         }
-        fetch('http://localhost:5000/report', {
+        fetch('https://furniture-mart-server-pink.vercel.app/report', {
             method: 'POST',
             headers: {
                 'content-type': "application/json",
@@ -45,24 +41,7 @@ const CategoriesSingle = ({ categorySingle }) => {
         })
             .then(res => res.json())
             .then(data => {
-                if (data.acknowledged) {
-                    toast.success('report successful')
-                    const report = {
-                        user: user?.email,
-                        status: true
-                    }
-                    fetch(`http://localhost:5000/report/${categorySingle?._id}`, {
-                        method: 'PATCH',
-                        headers: {
-                            'content-type': "application/json",
-                        },
-                        body: JSON.stringify(report)
-                    })
-                        .then(res => res.json())
-                        .then(data => {
-                            console.log("post and patch done")
-                        })
-                }
+                toast.success("your report for this product is successful")
             })
             .catch(error => console.error(error));
     }

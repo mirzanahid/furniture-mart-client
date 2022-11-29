@@ -15,7 +15,7 @@ const AddProduct = () => {
     const { data: categories = [] } = useQuery({
         queryKey: ['categories'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/categories');
+            const res = await fetch('https://furniture-mart-server-pink.vercel.app/categories');
             const data = await res.json();
             return data;
         }
@@ -54,7 +54,7 @@ const AddProduct = () => {
                         advertise: "0",
                     }
 
-                    fetch('http://localhost:5000/dashboard/addProduct', {
+                    fetch('https://furniture-mart-server-pink.vercel.app/dashboard/addProduct', {
                         method: 'POST',
                         headers: {
                             'content-type': "application/json"
@@ -66,7 +66,7 @@ const AddProduct = () => {
                             if (data.acknowledged) {
 
                                 navigate('/dashboard/myProducts')
-                                toast()
+                                toast("Product added successfully.")
                             }
                         })
                         .catch(error => console.error(error));

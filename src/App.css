@@ -215,6 +215,17 @@
 
 }
 
+.payment_texts {
+  text-transform: capitalize;
+  font-family: 'Jost', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: #313D4D;
+}
+
+.payment_texts span {
+  font-weight: 600;
+}
 
 @media (max-width: 575px) {
   .title h3 {
@@ -222,6 +233,10 @@
     font-size: 24px;
 
   }
+
+
+
+
 }
 
 /* responsive start */

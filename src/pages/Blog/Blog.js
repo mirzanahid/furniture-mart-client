@@ -15,56 +15,61 @@ const Blog = () => {
                     <Col lg='8'>
                         <Accordion defaultActiveKey={['0']} alwaysOpen>
                             <Accordion.Item eventKey="0">
-                                <Accordion.Header>Difference between SQL and NoSQL</Accordion.Header>
+                                <Accordion.Header>What are the different ways to manage a state in a React application?</Accordion.Header>
                                 <Accordion.Body>
-                                    <p>The differences between SQL vs NoSQL are:</p>
+                                    <p>The state makes a difference in keeping the information of diverse components in adjust since each state overhaul will re-render all important components. It can too act as a medium to communicate between different components.
+                                    </p>
                                     <p>
-
+                                        There are four fundamental sorts of state you would like to appropriately oversee in your Respond apps:
                                     </p>
                                     <ul>
-                                        <li><p>SQL databases are social, NoSQL databases are non-relational.</p></li>
-                                        <li><p>SQL databases utilize organized inquiry dialect and have a predefined pattern. NoSQL databases have energetic mappings for unstructured information.</p></li>
-                                        <li><p>SQL databases are vertically versatile, whereas NoSQL databases are evenly adaptable.</p></li>
-                                        <li><p>SQL databases are table-based, whereas NoSQL databases are archive, key-value, chart, or wide-column stores.</p></li>
-                                        <li><p>SQL databases are way better for multi-row exchanges, whereas NoSQL is superior for unstructured information like records or JSON.</p></li>
+                                        <li><p>Server state.</p></li>
+                                        <li><p>Global state </p></li>
+                                        <li><p>Local state</p></li>
                                     </ul>
                                 </Accordion.Body>
                             </Accordion.Item>
                             <Accordion.Item eventKey="1">
-                                <Accordion.Header>What is JWT, and how does it work?</Accordion.Header>
+                                <Accordion.Header>How does prototypical inheritance work?</Accordion.Header>
                                 <Accordion.Body>
                                     <p>
-                                        JWT, or JSON Web Token, is an open standard utilized to share security data between two parties — a client and a server. Each JWT contains encoded JSON objects, counting a set of claims. JWTs are marked employing a cryptographic calculation to guarantee that the claims cannot be changed after the token is issued.
+                                        The Prototypal Inheritance is a feature in javascript used to add methods and properties in objects. It is a method by which an object can inherit the properties and methods of another object. Traditionally, in order to get and set the Prototype of an object, we use Object.getPrototypeOf and Object.
                                     </p>
-                                    <p>JWTs can be broken down into three parts: header, payload, and signature. Each portion is isolated from the other by dab (.), and will take after the underneath structure: Header.Payload.Signature. The data contained within the header depicts the calculation utilized to produce the signature. All the claims inside JWT confirmation are put away in this part. Claims are utilized to supply confirmation to the party getting the token. For case, a server can set a claim saying 'isAdmin: true' and issue it to an regulatory client upon effectively logging into the application. The admin client can presently send this token in each resulting ask he/she sends to the server to demonstrate their character. The signature portion of a JWT is determined from the header and payload areas.</p>
+
                                 </Accordion.Body>
                             </Accordion.Item>
                             <Accordion.Item eventKey="2">
-                                <Accordion.Header>What is the difference between javascript and NodeJS?</Accordion.Header>
+                                <Accordion.Header>What is a unit test? Why should we write unit tests?</Accordion.Header>
                                 <Accordion.Body>
                                     <p>
-                                        Differences Between Node.js and JavaScript:
+                                        A unit test is basically a method that makes a little segment of our program and checks its usefulness separated from other components. Ordinarily, a unit test comprises three stages: The framework beneath test, frequently known as the SUT, is initialized to begin with. Another, a boost is connected to the framework beneath test (ordinarily by conjuring a method on it), and after that the behavior that comes about is watched. The unit test succeeds in case the watched behavior matches the desires; on the off chance that not, it falls flat, recommending that there's a blame with the framework being tried. The acronym AAA, or organize, act, and attest, is another title for these three unit test steps.
                                     </p>
-                                    <ul>
-                                        <li><p>JavaScript may be a client-side scripting dialect that's lightweight, cross-platform, and deciphered. Both Java and HTML incorporate it. Node.js, on the other hand, could be a V8-based server-side programming dialect.</p></li>
-                                        <li><p>JavaScript may be a basic programming dialect that can be utilized with any browser that has the JavaScript Motor introduced. Node.js, on the other hand, is an translator or execution environment for the JavaScript programming dialect.</p></li>
-                                        <li><p>Any motor may run JavaScript. As a result, composing JavaScript is unimaginably simple, and any working environment is comparative to a total browser. Node.js, on the other hand, as it were empowers the V8 motor.</p></li>
-                                        <li><p>A particular non-blocking operation is required to get to any working framework. There are many fundamental objects in JavaScript, but they are completely OS-specific.</p></li>
-                                        <li><p>The basic benefits of JavaScript incorporate a wide choice of interfacing and intuitive and fair the correct sum of server contact and coordinate guest input.
-                                            <br /><br />
-                                            Node.js, on the other hand, offers hub bundle administration with over 500 modules and the capacity to handle numerous demands at the same time. It too offers the special capacity to empower microservice engineering and the Web of Things. Indeed when comparing hub js vs. respond js, hub js continuously wins.</p></li>
-
-                                    </ul>
+                                    <p>
+                                        Composing testable code clearly needs a few self-control, center, and additional work. In any case, making program could be a complicated mental handle, so we ought to continuously work out caution and abstain from quickly slapping unused code together off the beat of our heads. We'll get clean, reusable, freely coupled, simple to preserve APIs as a remunerate for this appropriate computer program quality confirmation activity that won't harmed developers' brains when they attempt to get it them. The capacity to effectively get it, keep up, and amplify that code is eventually what makes testable code predominant to non-testable code.
+                                    </p>
                                 </Accordion.Body>
                             </Accordion.Item>
                             <Accordion.Item eventKey="3">
-                                <Accordion.Header>How does NodeJS handle multiple requests at the same time?</Accordion.Header>
+                                <Accordion.Header>React vs. Angular vs. Vue</Accordion.Header>
                                 <Accordion.Body>
                                     <p>
-                                        NodeJS receives multiple client requests and places them into EventQueue. NodeJS is built with the concept of event-driven architecture. NodeJS has its own EventLoop which is an infinite loop that receives requests and processes them. EventLoop is the listener for the EventQueue.
+                                        <span className='font-weight-bold'>Angular:</span>
+                                        AngularJS was developed in 2009 by Google. The first version was Angular.JS. Angular is currently known as a JavaScript framework. Obviously, all significant Google projects have been developed with Angular.
+
+                                        Angular.js is an MVC framework. A major disadvantage of Angular is that it uses a regular DOM, and thus, the entire tree structure of the HTML tags is updated, which massively impacts the loading time.
+                                    </p>
+
+                                    <p>
+                                        <span className='font-weight-bold'>React:</span>
+                                        Facebook released React.js in March 2013 as a JavaScript library. Because React just provides one view, it is not appropriate for building an MVC architecture: you must solve the model and controller yourself. Besides this, there are only advantages and lots of advantages.
+
+                                        One of the biggest of them is that React.js uses a virtual DOM that only compares the previous HTML code differences and only loads the different parts. This significantly impacts the loading times In a positive way.
                                     </p>
                                     <p>
-                                        On the off chance that NodeJS can handle the ask without I/O blocking at that point the occasion circle would itself prepare the ask and sends the reaction back to the client by itself. But, it is conceivable to handle numerous demands parallelly utilizing the NodeJS cluster module or worker_threads module.
+                                        <span className='font-weight-bold'>Vue:</span>
+                                        Vue.js is a JavaScript-based progressive framework for creating single-page applications. It was created with scalability and incrementality in mind, as well as ease of integration with other view layer frameworks.
+
+                                        Vue is built from the bottom up to be progressively adaptable, unlike other monolithic frameworks. The core library focuses solely on the view layer, and it's simple to use and connect with other libraries or applications. This framework's fast learning angle is almost a trademark. It's a flexible framework that may be used as a library or a full-fledged framework for developing large web applications.
                                     </p>
                                 </Accordion.Body>
                             </Accordion.Item>

@@ -13,17 +13,22 @@ const Home = () => {
     const { data: advertise = [] } = useQuery({
         queryKey: ['advertise'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/advertise');
+            const res = await fetch('https://furniture-mart-server-pink.vercel.app/advertise');
             const data = await res.json();
             return data;
         }
     })
-    // console.log(advertise)
     return (
         <div>
             <Banner></Banner>
             <Category></Category>
-            <Advertise></Advertise>
+
+            {
+                advertise?.length !== 0 ?
+                    <Advertise></Advertise>
+                    :
+                    null
+            }
             <Testimonial></Testimonial>
             <OurPartner></OurPartner>
         </div>

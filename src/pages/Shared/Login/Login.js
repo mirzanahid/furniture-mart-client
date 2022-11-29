@@ -72,7 +72,7 @@ const Login = () => {
             role,
             verify: "false"
         };
-        fetch(`http://localhost:5000/users/${email}`, {
+        fetch(`https://furniture-mart-server-pink.vercel.app/users/${email}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

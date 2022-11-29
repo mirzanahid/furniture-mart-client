@@ -15,7 +15,7 @@ const CheckoutForm = ({ bookings }) => {
 
 
     useEffect(() => {
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("https://furniture-mart-server-pink.vercel.app/create-payment-intent", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -38,7 +38,7 @@ const CheckoutForm = ({ bookings }) => {
         if (card == null) {
             return;
         }
-        const { error, paymentMethod } = await stripe.createPaymentMethod({
+        const { error } = await stripe.createPaymentMethod({
             type: 'card',
             card,
         });
@@ -80,7 +80,7 @@ const CheckoutForm = ({ bookings }) => {
             }
 
 
-            fetch('http://localhost:5000/payment', {
+            fetch('https://furniture-mart-server-pink.vercel.app/payment', {
                 method: 'POST',
                 headers: {
                     'content-type': "application/json",
@@ -94,7 +94,7 @@ const CheckoutForm = ({ bookings }) => {
                         const updateBooking = {
                             payment_status: "1"
                         }
-                        fetch(`http://localhost:5000/bookings/${_id}`, {
+                        fetch(`https://furniture-mart-server-pink.vercel.app/bookings/${_id}`, {
                             method: 'PUT',
                             headers: {
                                 'content-type': 'application/json'
@@ -103,10 +103,10 @@ const CheckoutForm = ({ bookings }) => {
                         })
                             .then(res => res.json())
                             .then(data => {
-                                const updateCategories={
+                                const updateCategories = {
                                     status: "sold"
                                 }
-                                fetch(`http://localhost:5000/productCategories/${product_id}`, {
+                                fetch(`https://furniture-mart-server-pink.vercel.app/productCategories/${product_id}`, {
                                     method: 'PUT',
                                     headers: {
                                         'content-type': 'application/json'
@@ -150,7 +150,7 @@ const CheckoutForm = ({ bookings }) => {
                         },
                     }}
                 />
-                <button className='row_btn' type="submit" disabled={!stripe || !clientSecret || processing}>
+                <button className='row_btn mt-4' type="submit" disabled={!stripe || !clientSecret || processing}>
                     Pay
                 </button>
             </form>

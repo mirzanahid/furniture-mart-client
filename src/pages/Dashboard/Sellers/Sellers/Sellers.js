@@ -10,7 +10,7 @@ const Sellers = () => {
     const { data: sellers = [] } = useQuery({
         queryKey: ['sellers'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/allSellers');
+            const res = await fetch('https://furniture-mart-server-pink.vercel.app/allSellers');
             const data = await res.json();
             return data;
         }
@@ -20,12 +20,12 @@ const Sellers = () => {
     const handlerForDeleteSeller = (id, email) => {
         const sure = window.confirm('Are you sure you want to delete this seller? this sellers products also delete!')
         if (sure) {
-            fetch(`http://localhost:5000/users/${id}`, {
+            fetch(`https://furniture-mart-server-pink.vercel.app/users/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
                 .then(data => {
-                    fetch(`http://localhost:5000/user/delete/${email}`, {
+                    fetch(`https://furniture-mart-server-pink.vercel.app/user/delete/${email}`, {
                         method: 'DELETE'
                     })
                         .then(res => res.json())
@@ -42,7 +42,7 @@ const Sellers = () => {
         }
         const sure = window.confirm('Are you sure you want to Verify this Seller?')
         if (sure) {
-            fetch(`http://localhost:5000/seller/${email}`, {
+            fetch(`https://furniture-mart-server-pink.vercel.app/seller/${email}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': "application/json",
@@ -78,7 +78,6 @@ const Sellers = () => {
                                 <td>{seller.name}</td>
                                 <td>{seller.email}</td>
                                 <td>
-                                    {console.log(seller?.verify)}
                                     {
                                         seller?.verify === 'true' ?
                                             <p className='success_toggle'>verified</p>

@@ -18,7 +18,6 @@ import SellerRoute from './SellerRoute';
 import BuyerRoute from './BuyerRoute';
 import AdminRoute from './AdminRoute';
 import Payment from '../pages/Dashboard/Buyers/Payment/Payment';
-import Advertise from '../pages/Home/Advertise/Advertise';
 import AllReport from '../pages/Dashboard/Buyers/AllReport/AllReport';
 
 
@@ -47,7 +46,7 @@ export const router = createBrowserRouter([
             {
                 path: '/categories/:id',
                 element: <PrivateRoute><Categories></Categories></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/categories/${params.id}`)
+                loader: ({ params }) => fetch(`https://furniture-mart-server-pink.vercel.app/categories/${params.id}`)
             },
         ]
     },
@@ -75,7 +74,7 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/payment/:id',
                 element: <BuyerRoute> <Payment></Payment></BuyerRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/payment/${params.id}`)
+                loader: ({ params }) => fetch(`https://furniture-mart-server-pink.vercel.app/payment/${params.id}`)
             },
             {
                 path: '/dashboard/addProduct',

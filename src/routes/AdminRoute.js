@@ -16,12 +16,9 @@ const AdminRoute = ({ children }) => {
         return <Spinner className='loader' animation="border" variant="warning" />
     }
     if (user && isAdmin) {
-        console.log('admin')
         return children
 
     }
-    console.log(isAdmin)
-  
     return <Navigate to='/login' state={{ from: location }} replace></Navigate>
 };
 

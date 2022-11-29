@@ -39,3 +39,12 @@ button.accordion-button {
     font-family: 'Jost', sans-serif;
     color: #313D4D;
 }
+.blog p span{
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 20px;
+    font-family: 'Jost', sans-serif;
+    color: #313D4D;
+    display: block;
+    margin-bottom: 5px;
+}

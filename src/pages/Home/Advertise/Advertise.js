@@ -7,7 +7,7 @@ const Advertise = () => {
     const { data: advertises = [] } = useQuery({
         queryKey: ['advertise'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/advertise');
+            const res = await fetch('https://furniture-mart-server-pink.vercel.app/advertise');
             const data = await res.json();
             return data;
         }
@@ -17,7 +17,7 @@ const Advertise = () => {
         <div className='mb-5'>
             <Container >
             <div className="title my-5">
-                    <h3>Popular Furnitures</h3>
+                    <h3>Popular furniture</h3>
                 </div>
                 <Row className='mt-5'>
                     {

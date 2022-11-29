@@ -16,6 +16,33 @@ const DashboardLayout = () => {
     const [isBuyer] = useBuyer(user?.email);
     const [isSeller] = useSeller(user?.email);
     const handleClose = () => setShow(false);
+
+
+    const navItems = <>
+        {
+            isBuyer &&
+            <li><NavLink onClick={handleClose} className={({ isActive }) => isActive ? 'active' : undefined} to={"/dashboard/myOrders"}>My Orders</NavLink></li>
+        }
+        {
+            isSeller &&
+            <>
+                <li><NavLink onClick={handleClose} className={({ isActive }) => isActive ? 'active' : undefined} to={"/dashboard/myProducts"}>My Products</NavLink></li>
+                <li><NavLink onClick={handleClose} className={({ isActive }) => isActive ? 'active' : undefined} to={"/dashboard/addProduct"}>Add A Product</NavLink></li>
+
+            </>
+        }
+        {
+            isAdmin &&
+            <>
+                <li><NavLink onClick={handleClose} className={({ isActive }) => isActive ? 'active' : undefined} to={"/dashboard/allSellers"}>All Sellers</NavLink></li>
+                <li><NavLink onClick={handleClose} className={({ isActive }) => isActive ? 'active' : undefined} to={"/dashboard/allBuyers"}>All Buyers</NavLink></li>
+                <li><NavLink onClick={handleClose} className={({ isActive }) => isActive ? 'active' : undefined} to={"/dashboard/allReport"}>Reported Items</NavLink></li>
+            </>
+        }
+    </>
+
+
+
     return (
         <div>
             <Header></Header>
@@ -24,25 +51,7 @@ const DashboardLayout = () => {
                     <Col lg='3' className='d-none d-lg-block'>
                         <div className="dash_navbar">
                             <ul className='dash-navbar-items'>
-                                {
-                                    isBuyer &&
-                                    <li><NavLink className={({ isActive }) => isActive ? 'active' : undefined} to={"/dashboard/myOrders"}>My Orders</NavLink></li>
-                                }
-                                {
-                                    isSeller &&
-                                    <>
-                                        <li><NavLink className={({ isActive }) => isActive ? 'active' : undefined} to={"/dashboard/addProduct"}>Add A Product</NavLink></li>
-                                        <li><NavLink className={({ isActive }) => isActive ? 'active' : undefined} to={"/dashboard/myProducts"}>My Products</NavLink></li>
-                                    </>
-                                }
-                                {
-                                    isAdmin &&
-                                    <>
-                                        <li><NavLink className={({ isActive }) => isActive ? 'active' : undefined} to={"/dashboard/allSellers"}>All Sellers</NavLink></li>
-                                        <li><NavLink className={({ isActive }) => isActive ? 'active' : undefined} to={"/dashboard/allBuyers"}>All Buyers</NavLink></li>
-                                        <li><NavLink className={({ isActive }) => isActive ? 'active' : undefined} to={"/dashboard/allReport"}>Reported Items</NavLink></li>
-                                    </>
-                                }
+                                {navItems}
                             </ul>
                         </div>
                     </Col>
@@ -54,17 +63,14 @@ const DashboardLayout = () => {
                 <>
                     <Offcanvas show={show} onHide={handleClose} responsive="lg" className="d-lg-none">
                         <Offcanvas.Header closeButton>
-                            <Offcanvas.Title>Responsive offcanvas</Offcanvas.Title>
+                            <Offcanvas.Title>Dashboard</Offcanvas.Title>
                         </Offcanvas.Header>
                         <Offcanvas.Body>
                             <Col lg='4' className=' d-lg-none'>
                                 <div className="dash_navbar">
-                                    {/* <ul className='dash-navbar-items'>
-                                                <li><NavLink>My Orders</NavLink></li>
-                                                <li><NavLink>Add Product</NavLink></li>
-                                                <li><NavLink>All Sellers</NavLink></li>
-                                                <li><NavLink>All Buyers</NavLink></li>
-                                            </ul> */}
+                                    <ul className='dash-navbar-items'>
+                                        {navItems}
+                                    </ul>
                                 </div>
                             </Col>
                         </Offcanvas.Body>

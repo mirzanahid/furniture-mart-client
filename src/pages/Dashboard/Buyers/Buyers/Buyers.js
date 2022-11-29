@@ -1,38 +1,31 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import Table from 'react-bootstrap/Table';
+import toast from 'react-hot-toast';
 import { FaTrashAlt } from 'react-icons/fa';
-
-
 
 const Buyers = () => {
     const { data: Buyers = [] } = useQuery({
         queryKey: ['categories'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/allBuyers');
+            const res = await fetch('https://furniture-mart-server-pink.vercel.app/allBuyers');
             const data = await res.json();
             return data;
         }
     })
-
-
-
     const handlerForDeleteBuyers = (id) => {
         const sure = window.confirm('Are you sure you want to delete this User')
         if (sure) {
-            fetch(`http://localhost:5000/users/${id}`, {
+            fetch(`https://furniture-mart-server-pink.vercel.app/users/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
                 .then(data => {
-                    // const remainingSellers = sellers.filter(sell => sell._id !== sellers._id)
-                    // console.log(remainingSellers)
-                    // setReviews(remainingReviews)
+                   toast.success("you successfully delete this user")
                 })
         }
 
     }
-    console.log(Buyers)
     return (
         <div className='my-5'>
             <h1 className='section_heading mb-5'>All Buyers</h1>
