@@ -79,7 +79,8 @@ const Signup = () => {
         const user = {
             name,
             email,
-            role
+            role,
+            verify: "false"
         };
         fetch(`http://localhost:5000/users/${email}`, {
             method: 'PUT',

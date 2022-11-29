@@ -4,24 +4,38 @@ import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../../contexts/AuthProvider/AuthProvider';
 import CategoriesSingleModal from '../CategoriesSingleModal/CategoriesSingleModal';
-import './CategoriesSingle.css'
+import './CategoriesSingle.css';
+import { FaCheckCircle } from "react-icons/fa";
+import { useQuery } from '@tanstack/react-query';
 
 const CategoriesSingle = ({ categorySingle }) => {
     const { user } = useContext(AuthContext)
     const [show, setShow] = useState(false);
-    const { _id, product_title, location, original_price, selling_price, seller_name, used_year, photo, post_date } = categorySingle
-
+    const { _id, product_title, location, original_price, selling_price, seller_name, used_year, photo, post_date, email } = categorySingle
     const handleShow = () => setShow(true);
-    const handleForReport = () => {
 
+
+
+    const { data: sellers = [] } = useQuery({
+        queryKey: ['sellers'],
+        queryFn: async () => {
+            const res = await fetch(`http://localhost:5000/user/verity/${email}`);
+            const data = await res.json();
+            return data;
+        }
+    })
+
+    console.log(sellers)
+
+
+
+    const handleForReport = () => {
         const reportProduct = {
             product_title: categorySingle.product_title,
             name: user?.displayName,
             product_id: _id,
 
         }
-
-
         fetch('http://localhost:5000/report', {
             method: 'POST',
             headers: {
@@ -51,9 +65,6 @@ const CategoriesSingle = ({ categorySingle }) => {
                 }
             })
             .catch(error => console.error(error));
-
-
-
     }
 
     return (
@@ -69,7 +80,7 @@ const CategoriesSingle = ({ categorySingle }) => {
                     <p>Original Price:$<span>{original_price}</span></p>
                     <p>Years of used: <span>{used_year}</span> Years</p>
                     <p>Post: <span>{post_date.slice(0, 15)}</span></p>
-                    <p>Seller Name: <span>{seller_name}</span></p>
+                    <p>Seller Name: <span>{seller_name} {sellers.isVerify === "true" ? <FaCheckCircle className='text-primary'></FaCheckCircle> : null}</span></p>
                     <button onClick={handleForReport} className='row_btn d-block '>Report</button>
                     <Link className='regular-btn mt-3' onClick={handleShow}>Book Now</Link>
 

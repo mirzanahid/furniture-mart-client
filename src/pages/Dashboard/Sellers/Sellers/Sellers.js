@@ -27,8 +27,27 @@ const Sellers = () => {
                 })
         }
     }
+    const handlerForVerifySeller = (email) => {
+        const user = {
+            verify: "true"
+        }
+        const sure = window.confirm('Are you sure you want to Verify this Seller?')
+        if (sure) {
+            fetch(`http://localhost:5000/seller/${email}`, {
+                method: 'PUT',
+                headers: {
+                    'content-type': "application/json",
+                },
+                body: JSON.stringify(user)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log("post and patch done")
+                })
+        }
 
-    
+    }
+
     return (
         <div className='my-5'>
             <h1 className='section_heading mb-5'>All Sellers</h1>
@@ -49,13 +68,21 @@ const Sellers = () => {
                                 <td>{idk + 1}</td>
                                 <td>{seller.name}</td>
                                 <td>{seller.email}</td>
-                                <td><button  className='trash-icons row_btn' onClick={()=>(seller._id)}>Verify</button></td>
-                                <td><button  className='trash-icons' onClick={()=>handlerForDeleteSeller(seller._id)}><FaTrashAlt></FaTrashAlt></button></td>
+                                <td>
+                                    {console.log(seller?.verify)}
+                                    {
+                                        seller?.verify === 'true' ?
+                                            <p className='success_toggle'>verified</p>
+                                            :
+                                            <button className='trash-icons row_btn' onClick={() => handlerForVerifySeller(seller.email)}>Verify</button>
+                                    }
+                                </td>
+                                <td><button className='trash-icons' onClick={() => handlerForDeleteSeller(seller._id)}><FaTrashAlt></FaTrashAlt></button></td>
                             </tr>
                         )}
                 </tbody>
             </Table>
-        
+
         </div>
     );
 };
