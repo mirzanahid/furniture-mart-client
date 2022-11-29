@@ -46,12 +46,12 @@ const Footer = () => {
                             <div className="col-xl-2 col-lg-2 col-md-4 col-sm-12">
                                 <div className="single-footer-caption mb-50">
                                     <div className="footer-tittle">
-                                        <h4>Services</h4>
+                                        <h4>Categories</h4>
                                         <ul>
-                                            <li><Link>Care</Link></li>
-                                            <li><Link>Treatment</Link></li>
-                                            <li><Link>Trainingl</Link></li>
-                                            <li><Link>Hygienic Care</Link></li>
+                                            <li><Link>Bed Room</Link></li>
+                                            <li><Link>Dinning Room</Link></li>
+                                            <li><Link>Kitchen</Link></li>
+                                            <li><Link>Guest Room</Link></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -65,7 +65,7 @@ const Footer = () => {
 
                                     <div className="footer-form mb-20">
                                         <div id="mc_embed_signup">
-                                            <Form>
+                                            <Form className='news_letter_form'>
                                                 <Form.Group className="mb-3" controlId="formBasicEmail">
                                                     <Form.Control type="email" placeholder="Enter email" />
                                                 </Form.Group>

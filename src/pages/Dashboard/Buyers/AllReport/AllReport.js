@@ -1,18 +1,24 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { Table } from 'react-bootstrap';
+import { FaTrashAlt } from 'react-icons/fa';
 
 const AllReport = () => {
 
 
     const { data: reports = [] } = useQuery({
-        queryKey: ['sellers'],
+        queryKey: ['reports'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/allSellers');
+            const res = await fetch('http://localhost:5000/report');
             const data = await res.json();
             return data;
         }
     })
+    console.log(reports)
+
+   const handlerForDeleteReportedProduct=()=>{
+
+   }
     return (
         <div className='my-5'>
             <h1 className='section_heading mb-5'>All Sellers</h1>
@@ -20,22 +26,22 @@ const AllReport = () => {
                 <thead>
                     <tr className='table-headers'>
                         <th>#</th>
-                        <th>User Name</th>
-                        <th>User Email</th>
+                        <th>Product Name</th>
+                        <th>Product Id</th>
                         <th>Action</th>
                     </tr>
                 </thead>
-                {/* <tbody>
+                <tbody>
                     {
                         reports.map((report, idk) =>
                             <tr className='table-data' key={idk}>
                                 <td>{idk + 1}</td>
                                 <td>{report.name}</td>
                                 <td>{report.email}</td>
-                                <td><button className='trash-icons' onClick={() => handlerForDeleteSeller(seller._id)}><FaTrashAlt></FaTrashAlt></button></td>
+                                <td><button className='trash-icons' onClick={() => handlerForDeleteReportedProduct(report._id)}><FaTrashAlt></FaTrashAlt></button></td>
                             </tr>
                         )}
-                </tbody> */}
+                </tbody>
             </Table>
 
         </div>

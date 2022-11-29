@@ -27,7 +27,9 @@
   padding: 6px 22px;
   transition: .4s;
   border: 1px solid #FD8311;
-  border-radius: 20px;
+  border-radius: 0;
+  height: 50px;
+  margin-left: 10px;
 }
 
 .footer-btn:hover {
@@ -53,6 +55,30 @@
   font-size: 32px;
   font-weight: 500;
   color: #313D4D;
+}
+.title{
+  text-align: center;
+}
+
+.title h3 {
+  font-family: 'Jost', sans-serif;
+  font-size: 32px;
+  font-weight: 500;
+  color: #313D4D;
+  position: relative;
+  display: inline-block;
+  text-transform: uppercase;
+}
+
+.title h3::after {
+  width: 60%;
+  height: 4px;
+  background: #313D4D;
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  content: '';
+  transform: translateX(-50%);
 }
 
 /* typography end */

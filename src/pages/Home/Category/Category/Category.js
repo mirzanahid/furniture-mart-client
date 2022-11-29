@@ -15,9 +15,9 @@ const Category = () => {
         }
     })
     return (
-        <section className='py-5'>
+        <section className='pt-5'>
             <Container>
-                <div className="title mb-4">
+                <div className="title my-5">
                     <h3 className='section_heading'>Categories</h3>
                 </div>
                 <Row>

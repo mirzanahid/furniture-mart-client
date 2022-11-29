@@ -15,8 +15,10 @@ const Advertise = () => {
 
     return (
         <div className='mb-5'>
-            <Container>
-            <h3 className='section_heading my-5'>Advertises</h3>
+            <Container >
+            <div className="title my-5">
+                    <h3 className='section_heading'>Our Popular Furniture</h3>
+                </div>
                 <Row className='mt-5'>
                     {
                         advertises.map(advertise => <AdvertiseSingle key={advertise?._id} advertise={advertise}></AdvertiseSingle>)
