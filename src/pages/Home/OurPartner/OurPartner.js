@@ -10,7 +10,7 @@ const OurPartner = () => {
         <div className='mb-6'>
             <Container>
                 <div className="title my-5">
-                    <h3 className='section_heading'>Our Partners</h3>
+                    <h3>Our Partners</h3>
                 </div>
 
                 <Row className='d-flex align-items-center my-5'>

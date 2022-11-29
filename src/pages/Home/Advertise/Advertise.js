@@ -17,7 +17,7 @@ const Advertise = () => {
         <div className='mb-5'>
             <Container >
             <div className="title my-5">
-                    <h3 className='section_heading'>Our Popular Furniture</h3>
+                    <h3>Popular Furnitures</h3>
                 </div>
                 <Row className='mt-5'>
                     {

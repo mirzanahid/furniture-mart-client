@@ -18,7 +18,7 @@ const Category = () => {
         <section className='pt-5'>
             <Container>
                 <div className="title my-5">
-                    <h3 className='section_heading'>Categories</h3>
+                    <h3>Categories</h3>
                 </div>
                 <Row>
                     {

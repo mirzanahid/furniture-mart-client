@@ -18,7 +18,7 @@ const Buyers = () => {
 
 
     const handlerForDeleteBuyers = (id) => {
-        const sure = window.confirm('Are you sure you want to delete this review')
+        const sure = window.confirm('Are you sure you want to delete this User')
         if (sure) {
             fetch(`http://localhost:5000/users/${id}`, {
                 method: 'DELETE'

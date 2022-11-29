@@ -9,7 +9,7 @@ const Testimonial = () => {
     return (
         <Container>
             <div className="title mt-5">
-                <h3 className='section_heading'>Testimonials</h3>
+                <h3>Testimonials</h3>
             </div>
             <Carousel variant="dark">
                 <Carousel.Item>

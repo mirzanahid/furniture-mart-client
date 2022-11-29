@@ -24,12 +24,11 @@ const Sellers = () => {
             })
                 .then(res => res.json())
                 .then(data => {
-
                 })
         }
-
     }
 
+    
     return (
         <div className='my-5'>
             <h1 className='section_heading mb-5'>All Sellers</h1>
@@ -39,6 +38,7 @@ const Sellers = () => {
                         <th>#</th>
                         <th>User Name</th>
                         <th>User Email</th>
+                        <th>Verify</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -49,6 +49,7 @@ const Sellers = () => {
                                 <td>{idk + 1}</td>
                                 <td>{seller.name}</td>
                                 <td>{seller.email}</td>
+                                <td><button  className='trash-icons row_btn' onClick={()=>(seller._id)}>Verify</button></td>
                                 <td><button  className='trash-icons' onClick={()=>handlerForDeleteSeller(seller._id)}><FaTrashAlt></FaTrashAlt></button></td>
                             </tr>
                         )}
@@ -60,3 +61,4 @@ const Sellers = () => {
 };
 
 export default Sellers;
+

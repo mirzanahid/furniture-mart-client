@@ -60,7 +60,12 @@
 }
 
 
-/*  */
+/* responsive start */
 @media (max-width: 575px) {
 
+    .testimonial_feedback {
+        font-size: 20px;
+        width: auto;
+
+    }
 }
