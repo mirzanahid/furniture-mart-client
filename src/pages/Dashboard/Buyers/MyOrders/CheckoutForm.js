@@ -27,7 +27,7 @@ const CheckoutForm = ({ bookings }) => {
     }, [price]);
 
     const handleSubmit = async (event) => {
-        setLoading(false)
+        setLoading(true)
         event.preventDefault();
 
         if (!stripe || !elements) {
@@ -51,7 +51,7 @@ const CheckoutForm = ({ bookings }) => {
             setCardError('');
         }
         setSuccess('');
-        setProcessing(true)
+        setProcessing(false)
         const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(
             clientSecret,
             {

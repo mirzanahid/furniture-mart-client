@@ -41,7 +41,7 @@ const MyOrders = () => {
 
     return (
         <div className='my-5'>
-            <h1 className='section_heading mb-5'>My Products</h1>
+            <h1 className='section_heading mb-5'>My Orders</h1>
             <div className="table_for">
                 <Table striped>
                     <thead>
@@ -63,7 +63,7 @@ const MyOrders = () => {
                                     <td>{idk + 1}</td>
                                     <td><img className='myOrder-image' src={book.photo} alt="" /></td>
                                     <td>{book.product_title}</td>
-                                    <td>{book.product_price}</td>
+                                    <td>{book.price}</td>
                                     <td>{
                                         book.payment_status === "1" ?
                                             <p className='success_toggle'>paid</p>

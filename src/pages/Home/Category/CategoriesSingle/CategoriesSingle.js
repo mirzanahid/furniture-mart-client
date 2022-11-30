@@ -14,8 +14,6 @@ const CategoriesSingle = ({ categorySingle }) => {
     const { _id, product_title, location, original_price, selling_price, seller_name, used_year, photo, post_date, email } = categorySingle
     const handleShow = () => setShow(true);
 
-
-
     const { data: sellers = [] } = useQuery({
         queryKey: ['sellers'],
         queryFn: async () => {
@@ -42,6 +40,7 @@ const CategoriesSingle = ({ categorySingle }) => {
         })
             .then(res => res.json())
             .then(data => {
+
                 toast.success("your report for this product is successful")
             })
             .catch(error => console.error(error));

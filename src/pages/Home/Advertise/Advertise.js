@@ -16,12 +16,22 @@ const Advertise = () => {
     return (
         <div className='mb-5'>
             <Container >
-            <div className="title my-5">
+                <div className="title my-5">
                     <h3>Popular furniture</h3>
                 </div>
                 <Row className='mt-5'>
                     {
-                        advertises.map(advertise => <AdvertiseSingle key={advertise?._id} advertise={advertise}></AdvertiseSingle>)
+                        advertises.map(advertise =>
+                            <>
+
+                                {
+                                    advertise.status === "available" ?
+                                        <AdvertiseSingle advertise={advertise}></AdvertiseSingle>
+                                        :
+                                        null
+                                }
+                            </>
+                        )
                     }
                 </Row>
             </Container >

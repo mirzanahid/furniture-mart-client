@@ -15,7 +15,16 @@ const Categories = () => {
             <Container>
                 <Row className='my-5'>
                     {
-                        categories.map(categorySingle => <CategoriesSingle key={categorySingle._id} categorySingle={categorySingle}></CategoriesSingle>)
+                        categories.map(categorySingle =>
+                            <>
+                                {
+                                    categorySingle.status === "available" ?
+                                        <CategoriesSingle key={categorySingle._id} categorySingle={categorySingle}></CategoriesSingle>
+                                        :
+                                        null
+                                }
+                            </>
+                        )
                     }
                 </Row>
             </Container>
