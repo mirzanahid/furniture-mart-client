@@ -12,7 +12,7 @@ const MyReports = () => {
     const { data: myReports = [], refetch } = useQuery({
         queryKey: ['myReports'],
         queryFn: async () => {
-            const res = await fetch(`https://furniture-mart-server-xi.vercel.app/${user?.email}`, {
+            const res = await fetch(`https://furniture-mart-server-xi.vercel.app/myreport/${user?.email}`, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }
@@ -22,8 +22,6 @@ const MyReports = () => {
             return data;
         }
     })
-
-
     const handlerForMyReportDelete = (reportItemId) => {
         const sure = window.confirm('Are you sure you want to delete this Reported Item?')
         if (sure) {

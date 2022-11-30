@@ -60,7 +60,7 @@ const CategoriesSingle = ({ categorySingle }) => {
                     <p>Original Price:$<span>{original_price}</span></p>
                     <p>Years of used: <span>{used_year}</span> Years</p>
                     <p>Post: <span>{post_date.slice(0, 15)}</span></p>
-                    <p>Seller Name: <span>{seller_name} {sellers.isVerify === "true" ? <FaCheckCircle className='text-primary'></FaCheckCircle> : null}</span></p>
+                    <p>Seller Name: <span>{seller_name} {sellers.isVerify ? <FaCheckCircle className='text-primary'></FaCheckCircle> : null}</span></p>
                     <button onClick={handleForReport} className='row_btn d-block '>Report</button>
                     <Link className='regular-btn mt-3' onClick={handleShow}>Book Now</Link>
 
