@@ -73,10 +73,6 @@ export const router = createBrowserRouter([
                 element: <BuyerRoute> <MyOrders></MyOrders></BuyerRoute>
             },
             {
-                path: '/dashboard/myReports',
-                element: <BuyerRoute> <MyReports></MyReports></BuyerRoute>
-            },
-            {
                 path: '/dashboard/payment/:id',
                 element: <BuyerRoute> <Payment></Payment></BuyerRoute>,
                 loader: ({ params }) => fetch(`https://furniture-mart-server-xi.vercel.app/payment/${params.id}`)
@@ -89,7 +85,7 @@ export const router = createBrowserRouter([
                 path: '/dashboard/addProduct',
                 element: <SellerRoute> <AddProduct></AddProduct></SellerRoute>
             }
-       
+
 
 
         ]

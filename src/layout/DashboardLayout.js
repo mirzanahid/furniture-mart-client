@@ -20,7 +20,6 @@ const DashboardLayout = () => {
             isBuyer &&
             <>
                 <li><NavLink className={({ isActive }) => isActive ? 'active' : undefined} to={"/dashboard/myOrders"}>My Orders</NavLink></li>
-                <li><NavLink className={({ isActive }) => isActive ? 'active' : undefined} to={"/dashboard/myReports"}>My Reports</NavLink></li>
             </>
         }
         {
