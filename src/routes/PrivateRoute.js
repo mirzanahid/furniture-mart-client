@@ -9,7 +9,9 @@ const PrivateRoute = ({ children }) => {
     const location = useLocation();
 
     if (load) {
-        return <Spinner className='loader' animation="border" variant="warning" />
+        return <div className="loader_div">
+            <Spinner className='loader' animation="border" variant="warning" />
+        </div>
     }
     if (user && user.uid) {
         return children
