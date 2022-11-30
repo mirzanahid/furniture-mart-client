@@ -19,7 +19,7 @@ const CategoriesSingle = ({ categorySingle }) => {
     const { data: sellers = [] } = useQuery({
         queryKey: ['sellers'],
         queryFn: async () => {
-            const res = await fetch(`https://furniture-mart-server-pink.vercel.app/user/verity/${email}`);
+            const res = await fetch(`https://furniture-mart-server-xi.vercel.app/user/verity/${email}`);
             const data = await res.json();
             return data;
         }
@@ -30,9 +30,10 @@ const CategoriesSingle = ({ categorySingle }) => {
             product_title: categorySingle.product_title,
             name: user?.displayName,
             product_id: _id,
+            email: user?.email
 
         }
-        fetch('https://furniture-mart-server-pink.vercel.app/report', {
+        fetch('https://furniture-mart-server-xi.vercel.app/report', {
             method: 'POST',
             headers: {
                 'content-type': "application/json",

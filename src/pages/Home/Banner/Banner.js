@@ -8,17 +8,20 @@ import banner3 from '../../../assets/banner3.jpg';
 import './Banner.css';
 const Banner = () => {
     return (
-        <Carousel>
+        <Carousel className='banner'>
             <Carousel.Item interval={6000}>
                 <img
                     className="d-block w-100 h-100 slider-image"
                     src={banner1}
                     alt="First slide"
                 />
+
                 <Carousel.Caption>
-                    <h3 className='banner-heading'>Get Low prices and best quality furniture</h3>
-                    <p className='banner-pra'>Used furniture is the great resource which is low price but in best quality</p>
-                    <Link className='regular-btn'>Shop Now</Link>
+                    <div className="overlay">
+                        <h3 className='banner-heading'>Get Low prices and best quality furniture</h3>
+                        <p className='banner-pra'>Used furniture is the great resource which is low price but in best quality</p>
+                        <Link className='regular-btn'>Shop Now</Link>
+                    </div>
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item interval={6000}>
@@ -28,9 +31,11 @@ const Banner = () => {
                     alt="Second slide"
                 />
                 <Carousel.Caption>
-                    <h3 className='banner-heading'>Renovate your home</h3>
-                    <p className='banner-pra'>Buy used furniture at a cheaper rate!</p>
-                    <Link className='regular-btn'>Shop Now</Link>
+                    <div className="overlay">
+                        <h3 className='banner-heading'>Renovate your home</h3>
+                        <p className='banner-pra'>Buy used furniture at a cheaper rate!</p>
+                        <Link className='regular-btn'>Shop Now</Link>
+                    </div>
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item>
@@ -40,9 +45,11 @@ const Banner = () => {
                     alt="Third slide"
                 />
                 <Carousel.Caption>
-                    <h3 className='banner-heading'>Your perfect room</h3>
-                    <p className='banner-pra'>Sells what you don't need and buy what you need.</p>
-                    <Link className='regular-btn'>Shop Now</Link>
+                    <div className="overlay">
+                        <h3 className='banner-heading'>Your perfect room</h3>
+                        <p className='banner-pra'>Sells what you don't need and buy what you need.</p>
+                        <Link className='regular-btn'>Shop Now</Link>
+                    </div>
                 </Carousel.Caption>
             </Carousel.Item>
         </Carousel>

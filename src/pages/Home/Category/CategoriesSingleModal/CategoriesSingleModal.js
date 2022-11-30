@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { useForm } from 'react-hook-form';
 import Form from 'react-bootstrap/Form';
@@ -10,8 +10,10 @@ const CategoriesSingleModal = ({ setShow, show, categorySingle }) => {
     const { user } = useContext(AuthContext);
     const { displayName, email } = user;
     const { register, formState: { errors }, handleSubmit } = useForm();
+    const [loading, setLoading] = useState(false)
     const handleClose = () => setShow(false);
     const handleForBook = data => {
+        setLoading(true)
         const bookingProduct = {
             product_title: categorySingle.product_title,
             phone: data.phone,
@@ -23,7 +25,7 @@ const CategoriesSingleModal = ({ setShow, show, categorySingle }) => {
             meeting_location: data.meetingLocation,
             payment_status: "0"
         }
-        fetch('https://furniture-mart-server-pink.vercel.app/bookings', {
+        fetch('https://furniture-mart-server-xi.vercel.app/bookings', {
             method: 'POST',
             headers: {
                 'content-type': "application/json",
@@ -36,6 +38,7 @@ const CategoriesSingleModal = ({ setShow, show, categorySingle }) => {
                 if (data.acknowledged) {
                     toast.success('product booked successfully')
                     handleClose()
+                    setLoading(false)
                 }
             })
             .catch(error => console.error(error));
@@ -87,7 +90,7 @@ const CategoriesSingleModal = ({ setShow, show, categorySingle }) => {
                             />
                             {errors.meetingLocation && <p className='error-text' role="alert">{errors.meetingLocation?.message}</p>}
                         </Form.Group>
-                        <input className='submit-btn' value="Submit" type="submit" />
+                        <input className='submit-btn' value={loading ? 'Submit...' : 'Submit'} type="submit" />
                     </Form>
                 </div>
             </Modal>

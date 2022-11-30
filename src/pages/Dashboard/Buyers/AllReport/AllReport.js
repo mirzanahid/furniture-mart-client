@@ -10,7 +10,7 @@ const AllReport = () => {
     const { data: reports = [], refetch } = useQuery({
         queryKey: ['reports'],
         queryFn: async () => {
-            const res = await fetch('https://furniture-mart-server-pink.vercel.app/report');
+            const res = await fetch('https://furniture-mart-server-xi.vercel.app/report');
             const data = await res.json();
             return data;
         }
@@ -19,7 +19,7 @@ const AllReport = () => {
     const handlerForDeleteReport = (id) => {
         const sure = window.confirm('Are you sure you want to delete this Report?')
         if (sure) {
-            fetch(`https://furniture-mart-server-pink.vercel.app/report/${id}`, {
+            fetch(`https://furniture-mart-server-xi.vercel.app/report/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
@@ -36,12 +36,12 @@ const AllReport = () => {
     const handlerForDeleteReportedProduct = (reportItemId, reportId) => {
         const sure = window.confirm('Are you sure you want to delete this Reported Item?')
         if (sure) {
-            fetch(`https://furniture-mart-server-pink.vercel.app/reported/item/${reportItemId}`, {
+            fetch(`https://furniture-mart-server-xi.vercel.app/reported/item/${reportItemId}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
                 .then(data => {
-                    fetch(`https://furniture-mart-server-pink.vercel.app/report/${reportId}`, {
+                    fetch(`https://furniture-mart-server-xi.vercel.app/report/${reportId}`, {
                         method: 'DELETE'
                     })
                         .then(res => res.json())
@@ -57,31 +57,40 @@ const AllReport = () => {
 
 
     return (
-        <div className='my-5'>
+        <div className='mb-5'>
             <h1 className='section_heading mb-5'>All Sellers</h1>
-            <Table striped>
-                <thead>
-                    <tr className='table-headers'>
-                        <th>#</th>
-                        <th>Product Name</th>
-                        <th>Product Id</th>
-                        <th>Action Report</th>
-                        <th>Action Report Item</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        reports.map((report, idk) =>
-                            <tr className='table-data' key={idk}>
-                                <td>{idk + 1}</td>
-                                <td>{report.product_title}</td>
-                                <td>{report.product_id}</td>
-                                <td><button className='trash-icons' onClick={() => handlerForDeleteReport(report._id)}><FaTrashAlt></FaTrashAlt></button></td>
-                                <td><button className='trash-icons' onClick={() => handlerForDeleteReportedProduct(report.product_id, report._id)}><FaTrashAlt></FaTrashAlt></button></td>
-                            </tr>
-                        )}
-                </tbody>
-            </Table>
+            <div className="table_for">
+                <Table striped>
+                    <thead>
+                        <tr className='table-headers'>
+                            <th>#</th>
+                            <th>Product Name</th>
+                            <th>Product Id</th>
+                            <th>Action Report</th>
+                            <th>Action Report Item</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            reports.map((report, idk) =>
+                                <tr className='table-data' key={idk}>
+                                    <td>{idk + 1}</td>
+                                    <td>{report.product_title}</td>
+                                    <td>{report.product_id}</td>
+                                    <td><button className='trash-icons' onClick={() => handlerForDeleteReport(report._id)}><FaTrashAlt></FaTrashAlt></button></td>
+                                    <td><button className='trash-icons' onClick={() => handlerForDeleteReportedProduct(report.product_id, report._id)}><FaTrashAlt></FaTrashAlt></button></td>
+                                </tr>
+                            )}
+                    </tbody>
+                </Table>
+                {
+                    reports.length !== 0 ||
+                    <div className=' text-center mt-5'><p className='fail_toggle'>no data to show</p></div>
+
+                }
+
+            </div>
+
 
         </div>
     );

@@ -13,7 +13,7 @@ const Home = () => {
     const { data: advertise = [] } = useQuery({
         queryKey: ['advertise'],
         queryFn: async () => {
-            const res = await fetch('https://furniture-mart-server-pink.vercel.app/advertise');
+            const res = await fetch('https://furniture-mart-server-xi.vercel.app/advertise');
             const data = await res.json();
             return data;
         }

@@ -24,6 +24,7 @@ const Signup = () => {
     const [createdUserEmail, setcreatedUserEmail] = useState('')
     const [token] = useToken(createdUserEmail);
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false)
 
     // location state
     const location = useLocation();
@@ -38,6 +39,7 @@ const Signup = () => {
 
 
     const handleSignIn = data => {
+        setLoading(true)
         setSignUpError('')
         // create new user 
         createUser(data.email, data.password)
@@ -82,7 +84,7 @@ const Signup = () => {
             role,
             verify: "false"
         };
-        fetch(`https://furniture-mart-server-pink.vercel.app/users/${email}`, {
+        fetch(`https://furniture-mart-server-xi.vercel.app/users/${email}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -92,6 +94,7 @@ const Signup = () => {
             .then(res => res.json())
             .then(data => {
                 setcreatedUserEmail(email)
+                setLoading(false)
             })
     }
 
@@ -142,7 +145,7 @@ const Signup = () => {
                                     }
                                 </Form.Group>
                                 <p className='error-text' role="alert">{signUpError}</p>
-                                <input className='submit-btn' value="Sign UP" type="submit" />
+                                <input className='submit-btn' value={loading ? 'Sign UP...' : 'Sign Up'} type="submit" />
                                 <p className='signUp-foot mt-3'>Already have an account? <Link className='form-footer-link' to={'/login'}>Log in</Link></p>
                                 <p className='or'>Or</p>
                             </Form>

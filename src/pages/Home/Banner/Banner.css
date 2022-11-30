@@ -1,4 +1,8 @@
-.carousel-inner {
+.banner {
+    margin-top: 73px;
+}
+
+.banner .carousel-inner {
     height: 500px;
 }
 
@@ -12,12 +16,23 @@
     color: #fff;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.4);
+
+}
+
+.overlay {
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+
+
 }
 
 .carousel-item {
@@ -35,6 +50,7 @@
     font-weight: 500;
     line-height: 70px;
     color: #fff;
+    width: 600px;
 }
 
 .banner-pra {
@@ -51,8 +67,8 @@
 @media only screen and (max-width: 575.98px) {
 
     .carousel-inner {
-        height: 550px;
-  
+        height: 400px;
+
     }
 
     .banner-heading {
@@ -60,6 +76,7 @@
         line-height: 40px;
         padding-left: 15px;
         padding-right: 15px;
+        width: auto;
     }
 
     .banner-pra {
@@ -71,9 +88,9 @@
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767.98px) {
-
     .carousel-inner {
-        height: 550px;
+        height: 400px;
+        width: auto;
     }
 
     .banner-heading {
@@ -90,10 +107,27 @@
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
 
     .carousel-inner {
-        height: 750px;
+        height: 550px;
     }
 
 
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+
+    .carousel-inner {
+        height: 550px;
+    }
+
+    .banner-heading {
+        font-size: 48px;
+        line-height: 50px;
+    }
+
+    .banner-pra {
+        font-size: 16px;
+        line-height: 20px;
+    }
 }
 
 /* responsive start */

@@ -19,6 +19,7 @@ import BuyerRoute from './BuyerRoute';
 import AdminRoute from './AdminRoute';
 import Payment from '../pages/Dashboard/Buyers/Payment/Payment';
 import AllReport from '../pages/Dashboard/Buyers/AllReport/AllReport';
+import MyReports from '../pages/Dashboard/Buyers/MyReports/MyReports';
 
 
 export const router = createBrowserRouter([
@@ -46,7 +47,7 @@ export const router = createBrowserRouter([
             {
                 path: '/categories/:id',
                 element: <PrivateRoute><Categories></Categories></PrivateRoute>,
-                loader: ({ params }) => fetch(`https://furniture-mart-server-pink.vercel.app/categories/${params.id}`)
+                loader: ({ params }) => fetch(`https://furniture-mart-server-xi.vercel.app/categories/${params.id}`)
             },
         ]
     },
@@ -72,19 +73,24 @@ export const router = createBrowserRouter([
                 element: <BuyerRoute> <MyOrders></MyOrders></BuyerRoute>
             },
             {
-                path: '/dashboard/payment/:id',
-                element: <BuyerRoute> <Payment></Payment></BuyerRoute>,
-                loader: ({ params }) => fetch(`https://furniture-mart-server-pink.vercel.app/payment/${params.id}`)
+                path: '/dashboard/myReports',
+                element: <BuyerRoute> <MyReports></MyReports></BuyerRoute>
             },
             {
-                path: '/dashboard/addProduct',
-                element: <SellerRoute> <AddProduct></AddProduct></SellerRoute>
+                path: '/dashboard/payment/:id',
+                element: <BuyerRoute> <Payment></Payment></BuyerRoute>,
+                loader: ({ params }) => fetch(`https://furniture-mart-server-xi.vercel.app/payment/${params.id}`)
             },
             {
                 path: '/dashboard/myProducts',
                 element: <SellerRoute> <MyProducts></MyProducts></SellerRoute>
             },
-           
+            {
+                path: '/dashboard/addProduct',
+                element: <SellerRoute> <AddProduct></AddProduct></SellerRoute>
+            }
+       
+
 
         ]
 

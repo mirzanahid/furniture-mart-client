@@ -21,7 +21,7 @@ const Login = () => {
     const [registerdEmail, setRegisterEmail] = useState('')
     const [token] = useToken(registerdEmail)
     const navigate = useNavigate()
-
+    const [loading, setLoading] = useState(false)
 
     // location state
     const location = useLocation();
@@ -37,6 +37,7 @@ const Login = () => {
 
 
     const handleForLogin = data => {
+        setLoading(true)
         setLoginError('')
         login(data.email, data.password)
             .then(result => {
@@ -72,7 +73,7 @@ const Login = () => {
             role,
             verify: "false"
         };
-        fetch(`https://furniture-mart-server-pink.vercel.app/users/${email}`, {
+        fetch(`https://furniture-mart-server-xi.vercel.app/users/${email}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -81,6 +82,7 @@ const Login = () => {
         })
             .then(res => res.json())
             .then(data => {
+                setLoading(false)
                 setRegisterEmail(email)
             })
     }
@@ -105,7 +107,7 @@ const Login = () => {
                                 {errors.password && <p className='error-text' role="alert">{errors.password?.message}</p>}
                                 <p className='error-text' role="alert">{loginError}</p>
 
-                                <input className='submit-btn' value="Log In" type="submit" />
+                                <input className='submit-btn' value={loading ? 'Log In...' : 'Log In'} type="submit" />
                                 <p className='signUp-foot mt-3'>New to Furniture Mart?? <Link className='form-footer-link' to={'/signup'}>Sign Up</Link></p>
                                 <p className='or'>Or</p>
 

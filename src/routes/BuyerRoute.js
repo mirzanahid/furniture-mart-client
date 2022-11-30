@@ -12,7 +12,9 @@ const BuyerRoute = ({ children }) => {
     const location = useLocation();
 
     if (load || isBuyerLoading) {
-        return <Spinner className='loader' animation="border" variant="warning" />
+        return <div className="loader_div">
+            <Spinner className='loader' animation="border" variant="warning" />
+        </div>
     }
 
     if (user && isBuyer) {

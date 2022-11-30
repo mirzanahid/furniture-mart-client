@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import Form from 'react-bootstrap/Form';
@@ -12,10 +12,11 @@ const AddProduct = () => {
     const imageHostKey = process.env.REACT_APP_img_key;
     const { register, formState: { errors }, handleSubmit } = useForm();
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false)
     const { data: categories = [] } = useQuery({
         queryKey: ['categories'],
         queryFn: async () => {
-            const res = await fetch('https://furniture-mart-server-pink.vercel.app/categories');
+            const res = await fetch('https://furniture-mart-server-xi.vercel.app/categories');
             const data = await res.json();
             return data;
         }
@@ -23,8 +24,7 @@ const AddProduct = () => {
 
 
     const handleForAddProduct = data => {
-
-
+        setLoading(true)
         const image = data.imageFile[0]
         const formData = new FormData();
         formData.append('image', image);
@@ -54,7 +54,7 @@ const AddProduct = () => {
                         advertise: "0",
                     }
 
-                    fetch('https://furniture-mart-server-pink.vercel.app/dashboard/addProduct', {
+                    fetch('https://furniture-mart-server-xi.vercel.app/dashboard/addProduct', {
                         method: 'POST',
                         headers: {
                             'content-type': "application/json"
@@ -67,6 +67,7 @@ const AddProduct = () => {
 
                                 navigate('/dashboard/myProducts')
                                 toast("Product added successfully.")
+                                setLoading(false)
                             }
                         })
                         .catch(error => console.error(error));
@@ -77,16 +78,13 @@ const AddProduct = () => {
 
     }
 
-
-
-
     return (
 
         <div className='furnitureMart-form'>
             <Container>
                 <Row className='d-flex justify-content-center'>
                     <Col lg='6'>
-                        <div className="signup-login-form">
+                        <div className="signup-login-form add_product">
                             <Form onSubmit={handleSubmit(handleForAddProduct)}>
                                 <h2 className='signup-heading'>Add Product</h2>
                                 <Form.Group className="mb-3" controlId="productName">
@@ -169,7 +167,7 @@ const AddProduct = () => {
                                     />
                                     {errors.description && <p className='error-text' role="alert">{errors.description?.message}</p>}
                                 </Form.Group>
-                                <input className='submit-btn' value="Submit" type="submit" />
+                                <input className='submit-btn' value={loading ? 'Submit...' : 'Submit'} type="submit" />
                             </Form>
                         </div>
                     </Col>

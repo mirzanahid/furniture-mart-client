@@ -3,9 +3,12 @@
     padding: 35px 35px;
     width: auto;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    margin: 60px 0;
+    margin-top: 120px;
+    margin-bottom: 60px;
 }
-
+.add_product{
+  margin-top: 0 !important;
+}
 .signup-heading {
     margin-bottom: 40px;
     text-align: center;
@@ -55,9 +58,9 @@
     border-radius: 0;
 }
 
-.signup-login-form  .imageFile{
-     padding-top: 9px;
-     padding-left: 15px;
+.signup-login-form .imageFile {
+    padding-top: 9px;
+    padding-left: 15px;
 }
 
 .submit-btn {

@@ -7,11 +7,11 @@ import { Container } from 'react-bootstrap';
 
 const Testimonial = () => {
     return (
-        <Container>
+        <Container >
             <div className="title mt-5">
                 <h3>Testimonials</h3>
             </div>
-            <Carousel variant="dark">
+            <Carousel variant="dark" className='testimonial'>
                 <Carousel.Item>
 
                     <Carousel.Caption>

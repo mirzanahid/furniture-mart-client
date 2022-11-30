@@ -11,7 +11,9 @@ const SellerRoute = ({ children }) => {
     const location = useLocation();
 
     if (load || isSellerLoading) {
-        return <Spinner className='loader' animation="border" variant="warning" />
+        return <div className="loader_div">
+        <Spinner className='loader' animation="border" variant="warning" />
+    </div>
     }
     if (user && isSeller) {
         return children

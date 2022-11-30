@@ -9,10 +9,10 @@ const MyOrders = () => {
     const { user } = useContext(AuthContext)
 
 
-    const { data: bookings = [] } = useQuery({
+    const { data: bookings = [], refetch } = useQuery({
         queryKey: ['bookings'],
         queryFn: async () => {
-            const res = await fetch(`https://furniture-mart-server-pink.vercel.app/bookings/${user?.email}`, {
+            const res = await fetch(`https://furniture-mart-server-xi.vercel.app/bookings/${user?.email}`, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }
@@ -26,7 +26,7 @@ const MyOrders = () => {
     const handlerForDeleteOrder = (id) => {
         const sure = window.confirm('Are you sure you want to delete this order?')
         if (sure) {
-            fetch(`https://furniture-mart-server-pink.vercel.app/order/${id}`, {
+            fetch(`https://furniture-mart-server-xi.vercel.app/order/${id}`, {
                 method: 'DELETE',
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -34,7 +34,7 @@ const MyOrders = () => {
             })
                 .then(res => res.json())
                 .then(data => {
-
+                    refetch();
                 })
         }
     }
@@ -42,39 +42,52 @@ const MyOrders = () => {
     return (
         <div className='my-5'>
             <h1 className='section_heading mb-5'>My Products</h1>
-            <Table striped>
-                <thead>
-                    <tr className='table-headers'>
-                        <th>SL.</th>
-                        <th>P. Photo</th>
-                        <th>P. Name</th>
-                        <th>Price</th>
-                        <th>Payment</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
+            <div className="table_for">
+                <Table striped>
+                    <thead>
+                        <tr className='table-headers'>
+                            <th>SL.</th>
+                            <th>P. Photo</th>
+                            <th>P. Name</th>
+                            <th>Price</th>
+                            <th>Payment</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
                     {
-                        bookings.map((book, idk) =>
-                            <tr className='table-data' key={idk}>
-                                <td>{idk + 1}</td>
-                                <td><img className='myOrder-image' src={book.photo} alt="" /></td>
-                                <td>{book.product_title}</td>
-                                <td>{book.product_price}</td>
-                                <td>{
-                                    book.payment_status === "1" ?
-                                        <p className='success_toggle'>paid</p>
-                                        :
-                                        <button className='row_btn'><Link to={`/dashboard/payment/${book._id}`}>Pay</Link></button>
-                                }</td>
-                                <td><button className='trash-icons' onClick={() => handlerForDeleteOrder(book._id)}><FaTrashAlt></FaTrashAlt></button></td>
-                            </tr>
 
-                        )
+
+                        <tbody>
+                            {bookings.map((book, idk) =>
+                                <tr tr className='table-data' key={idk} >
+                                    <td>{idk + 1}</td>
+                                    <td><img className='myOrder-image' src={book.photo} alt="" /></td>
+                                    <td>{book.product_title}</td>
+                                    <td>{book.product_price}</td>
+                                    <td>{
+                                        book.payment_status === "1" ?
+                                            <p className='success_toggle'>paid</p>
+                                            :
+                                            <button className='row_btn'><Link to={`/dashboard/payment/${book._id}`}>Pay</Link></button>
+                                    }</td>
+                                    <td><button className='trash-icons' onClick={() => handlerForDeleteOrder(book._id)}><FaTrashAlt></FaTrashAlt></button></td>
+                                </tr>
+                            )}
+                        </tbody>
+
                     }
-                </tbody>
-            </Table>
-        </div>
+
+
+                </Table>
+
+                {
+                    bookings.length !== 0 ||
+                    <div className=' text-center mt-5'><p className='fail_toggle'>no data to show</p></div>
+
+                }
+            </div>
+
+        </div >
     );
 };
 

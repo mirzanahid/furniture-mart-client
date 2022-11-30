@@ -5,7 +5,7 @@ const useToken = email => {
     const [token, setToken] = useState('');
     useEffect(() => {
         if (email) {
-            fetch(`https://furniture-mart-server-pink.vercel.app/jwt?email=${email}`)
+            fetch(`https://furniture-mart-server-xi.vercel.app/jwt?email=${email}`)
                 .then(res => res.json())
                 .then(data => {
                     if (data.accessToken) {

@@ -10,7 +10,7 @@ const Footer = () => {
                 <div className="footer-area footer-padding">
                     <div className="container">
                         <div className="row justify-content-between">
-                            <div className="col-xl-3 col-lg-3 col-md-12 col-sm-8">
+                            <div className="col-xl-3 col-lg-3 col-md-12 col-sm-12">
                                 <div className="single-footer-caption mb-50">
                                     <div className="single-footer-caption mb-20">
 
@@ -56,7 +56,7 @@ const Footer = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-xl-4 col-lg-4 col-md-6 col-sm-8">
+                            <div className="col-xl-4 col-lg-4 col-md-6 col-sm-12">
                                 <div className="single-footer-caption mb-50">
                                     <div className="footer-tittle mb-10">
                                         <h4>Subscribe newsletter</h4>

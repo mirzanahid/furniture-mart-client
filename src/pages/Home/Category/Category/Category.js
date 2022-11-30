@@ -9,13 +9,13 @@ const Category = () => {
     const { data: categories = [] } = useQuery({
         queryKey: ['categories'],
         queryFn: async () => {
-            const res = await fetch('https://furniture-mart-server-pink.vercel.app/categories');
+            const res = await fetch('https://furniture-mart-server-xi.vercel.app/categories');
             const data = await res.json();
             return data;
         }
     })
     return (
-        <section className='pt-5'>
+        <section className='pt-2 lg:pt-5'>
             <Container>
                 <div className="title my-5">
                     <h3>Categories</h3>
