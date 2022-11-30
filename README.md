@@ -36,3 +36,8 @@ FurnitureMart is a wedding photography website where you can get so many service
 
 
 To live Experience, check out the [https://furnituremart-58a65.web.app/]
+
+
+- adminEmail: <admin@gmail.com>
+
+- adminPassword: <123456>
