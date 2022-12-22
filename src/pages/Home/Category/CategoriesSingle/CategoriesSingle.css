@@ -36,3 +36,11 @@
     font-weight: 500;
     color: #313D4D;
 }
+
+
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+    .product_image img {
+        height: 360px;
+
+    }
+}
